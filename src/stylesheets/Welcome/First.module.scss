@@ -1,0 +1,41 @@
+.wrapper {
+  .card {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+
+    .fontStyle {
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .pic {
+      background-color: #42b983;
+      width: 150px;
+      height: 150px;
+      margin-bottom:18px;
+    }
+  }
+
+  .action {
+    display: flex;
+    justify-content: space-between;
+    font-size: 21px;
+    color: white;
+    margin-top: 40px;
+    margin-right: 10px;
+
+    .fake {
+      visibility: hidden;
+    }
+
+    .next {
+      margin-left: 10px;
+    }
+  }
+}
