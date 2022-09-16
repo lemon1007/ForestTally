@@ -13,8 +13,12 @@ export const Welcome = defineComponent({
             <span class={s.fontStyle}>森林记账</span>
           </div>
         </header>
-        <main><RouterView/></main>
-        <footer></footer>
+        <main>
+          <RouterView name="main"/>
+        </main>
+        <footer>
+          <RouterView name="footer"/>
+        </footer>
       </div>
     );
   }

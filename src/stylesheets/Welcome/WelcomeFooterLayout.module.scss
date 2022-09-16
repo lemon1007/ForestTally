@@ -1,0 +1,16 @@
+.action {
+  height: 17vh;
+  line-height: 17vh;
+  display: flex;
+  justify-content: space-around;
+  font-size: 21px;
+  color: white;
+
+  .fake {
+    visibility: hidden;
+  }
+
+  .next {
+    margin-left: 10px;
+  }
+}
