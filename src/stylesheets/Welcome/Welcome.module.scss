@@ -7,11 +7,26 @@
 
   > header {
     height: 24vh;
+
+    .headerContent {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50%;
+
+      .iconStyle {
+        width: 70px;
+      }
+
+      .fontStyle {
+        font-size: 20px;
+        color: white;
+      }
+    }
   }
 
   > main {
     width: 92%;
-    height: 57vh;
+    height: 56vh;
   }
 
   > footer {
