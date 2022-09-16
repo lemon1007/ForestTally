@@ -5,12 +5,11 @@ import {useSwipe} from '../hooks/useSwipe';
 
 export const Welcome = defineComponent({
   setup: (props, context) => {
-    type Y = { Component: VNode, route: RouteLocationNormalizedLoaded };
-    const main = ref<HTMLElement | null>(null);
-    const {direction, swiping} = useSwipe(main);
-    watchEffect(() => {
-      console.log( direction.value);
-    });
+    const main = ref<HTMLElement>();
+    // const {direction, swiping} = useSwipe(main);
+    // watchEffect(() => {
+    //   console.log(direction.value);
+    // });
     return () => (
       <div class={s.wrapper}>
         <header>
@@ -23,7 +22,7 @@ export const Welcome = defineComponent({
         </header>
         <main ref={main}>
           <RouterView name="main">
-            {({Component: Content, route: R}: Y) =>
+            {({Component: Content, route: R}: { Component: VNode, route: RouteLocationNormalizedLoaded }) =>
               <Transition
                 enterFromClass={s.slideFadeEnterFrom}
                 enterActiveClass={s.slideFadeEnterActive}

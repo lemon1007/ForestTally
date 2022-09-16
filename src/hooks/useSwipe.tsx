@@ -5,9 +5,9 @@ type Point = {
   y: number;
 }
 
-export const useSwipe = (element: Ref<HTMLElement | null>) => {
-  const start = ref<Point | null>(null);
-  const end = ref<Point | null>(null);
+export const useSwipe = (element: Ref<HTMLElement | undefined>) => {
+  const start = ref<Point>();
+  const end = ref<Point>();
   const swiping = ref(false);
   const distance = computed(() => {
     if (!start.value || !end.value) { return null; }

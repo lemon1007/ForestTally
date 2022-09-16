@@ -1,21 +1,18 @@
 import s from '../../../stylesheets/Welcome/WelcomeLayout.module.scss';
-import {WelcomeLayout} from '../WelcomeLayout';
-import second from '../../../assets/icons/second.svg';
+import {FunctionalComponent} from 'vue';
 
-export const Second = () => {
+export const Second:FunctionalComponent = () => {
   return (
-    <WelcomeLayout>
-      {{
-        icon: () =>
-          <svg class={s.iconStyle}>
-            <use xlinkHref="#second"></use>
-          </svg>,
-        title: () => <>
-          <div>这是二段话</div>
-          <div>还会有第三段哦</div>
-        </>,
-      }}
-    </WelcomeLayout>
+    <div class={s.wrapper}>
+      <div class={s.card}>
+        <svg class={s.iconStyle}>
+          <use xlinkHref="#second"></use>
+        </svg>,
+        <div class={s.fontStyle}>
+          <div>这是二段话<br/>还会有第三段哦</div>
+        </div>
+      </div>
+    </div>
   );
 };
 

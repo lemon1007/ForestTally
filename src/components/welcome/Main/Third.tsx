@@ -1,21 +1,18 @@
 import s from '../../../stylesheets/Welcome/WelcomeLayout.module.scss';
-import {WelcomeLayout} from '../WelcomeLayout';
-import third from '../../../assets/icons/third.svg';
+import {FunctionalComponent} from 'vue';
 
-export const Third = () => {
+export const Third:FunctionalComponent = () => {
   return (
-    <WelcomeLayout>
-      {{
-        icon: () =>
-          <svg class={s.iconStyle}>
-            <use xlinkHref="#third"></use>
-          </svg>,
-        title: () => <>
-          <div>这是三段话</div>
-          <div>还会有第四段哦</div>
-        </>,
-      }}
-    </WelcomeLayout>
+    <div class={s.wrapper}>
+      <div class={s.card}>
+        <svg class={s.iconStyle}>
+          <use xlinkHref="#third"></use>
+        </svg>,
+        <div class={s.fontStyle}>
+          <div>这是三段话<br/>还会有第四段哦</div>
+        </div>
+      </div>
+    </div>
   );
 };
 Third.displayName = 'Third';

@@ -1,21 +1,19 @@
 import s from '../../../stylesheets/Welcome/WelcomeLayout.module.scss';
-import {WelcomeLayout} from '../WelcomeLayout';
-import forth from '../../../assets/icons/forth.svg';
+import {FunctionalComponent} from 'vue';
 
-export const Forth = () => {
+export const Forth: FunctionalComponent = () => {
   return (
-    <WelcomeLayout>
-      {{
-        icon: () =>
-          <svg class={s.iconStyle}>
-            <use xlinkHref="#forth"></use>
-          </svg>,
-        title: () => <>
-          <div>这是四段话</div>
-          <div>后面没有话了哦</div>
-        </>,
-      }}
-    </WelcomeLayout>
+    <div class={s.wrapper}>
+      <div class={s.card}>
+        <svg class={s.iconStyle}>
+          <use xlinkHref="#forth"></use>
+        </svg>
+        <div class={s.fontStyle}>
+          <div>这是四段话<br/>后面没有话了哦</div>
+        </div>
+      </div>
+    </div>
   );
 };
+
 Forth.displayName = 'Forth';
