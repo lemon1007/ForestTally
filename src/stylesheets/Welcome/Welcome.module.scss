@@ -27,10 +27,30 @@
   > main {
     width: 92%;
     height: 58vh;
+    position: relative;
   }
 
   > footer {
     height: 17vh;
     width: 100%;
   }
+}
+
+// 页面图片切换动画
+.slideFadeEnterActive,
+.slideFadeLeaveActive {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease-out;
+}
+
+.slideFadeEnterFrom {
+  transform: translateX(100vw);
+}
+
+.slideFadeLeaveTo {
+  transform: translateX(-100vw);
 }
