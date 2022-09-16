@@ -8,7 +8,10 @@ export const First = () => {
   return (
     <WelcomeLayout>
       {{
-        icon: () => <img src={first} class={s.iconStyle}/>,
+        icon: () =>
+          <svg class={s.iconStyle}>
+            <use xlinkHref="#first"></use>
+          </svg>,
         title: () =>
           <>
             <div>这是一段话</div>

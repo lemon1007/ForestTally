@@ -1,7 +1,6 @@
 import {defineComponent, Transition, VNode} from 'vue';
 import {RouteLocationNormalizedLoaded, RouterView} from 'vue-router';
 import s from '../stylesheets/Welcome/Welcome.module.scss';
-import tree from '../assets/icons/tree.svg';
 
 export const Welcome = defineComponent({
   setup: (props, context) => {
@@ -10,7 +9,9 @@ export const Welcome = defineComponent({
       <div class={s.wrapper}>
         <header>
           <div class={s.headerContent}>
-            <img src={tree} class={s.iconStyle}></img>
+            <svg>
+              <use xlinkHref="#tree"></use>
+            </svg>
             <span class={s.fontStyle}>森林记账</span>
           </div>
         </header>

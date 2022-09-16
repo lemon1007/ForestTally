@@ -6,7 +6,10 @@ export const Forth = () => {
   return (
     <WelcomeLayout>
       {{
-        icon: () => <img src={forth} class={s.iconStyle}/>,
+        icon: () =>
+          <svg class={s.iconStyle}>
+            <use xlinkHref="#forth"></use>
+          </svg>,
         title: () => <>
           <div>这是四段话</div>
           <div>后面没有话了哦</div>

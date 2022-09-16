@@ -9,12 +9,18 @@
     height: 24vh;
 
     .headerContent {
+      height: 24vh;
       display: flex;
       flex-direction: column;
-      margin-top: 50%;
+      justify-items: center;
+      align-items: center;
+      padding-top: 5vh;
 
-      .iconStyle {
+      > svg {
         width: 70px;
+        height: 70px;
+        margin-bottom: 7px;
+        margin-top: -5px;
       }
 
       .fontStyle {

@@ -6,7 +6,10 @@ export const Second = () => {
   return (
     <WelcomeLayout>
       {{
-        icon: () => <img src={second} class={s.iconStyle}/>,
+        icon: () =>
+          <svg class={s.iconStyle}>
+            <use xlinkHref="#second"></use>
+          </svg>,
         title: () => <>
           <div>这是二段话</div>
           <div>还会有第三段哦</div>
