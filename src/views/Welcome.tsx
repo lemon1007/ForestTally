@@ -4,26 +4,28 @@ import s from '../stylesheets/Welcome/Welcome.module.scss';
 import {useSwipe} from '../hooks/useSwipe';
 import {throttle} from '../shared/throttle';
 
+const pushMap: Record<string, string> = {
+  'welcome1': '/welcome/2',
+  'welcome2': '/welcome/3',
+  'welcome3': '/welcome/4',
+  'welcome4': '/start',
+};
 export const Welcome = defineComponent({
   setup: (props, context) => {
     const main = ref<HTMLElement>();
+    // 阻止默认动作
     const {direction, swiping} = useSwipe(main, {
       beforeStart: e => e.preventDefault()
     });
     const route = useRoute();
     const router = useRouter();
+    // 设置throttle节流，在一次transition过渡时间内，只获取第一次滑动动作
     const push = throttle(
       () => {
-        if (route.name === 'welcome1') {
-          router.push('/welcome/2');
-        } else if (route.name === 'welcome2') {
-          router.push('/welcome/3');
-        } else if (route.name === 'welcome3') {
-          router.push('/welcome/4');
-        } else if (route.name === 'welcome4') {
-          router.push('/start');
-        }
+        const name = (route.name || 'welcome1').toString();
+        router.push(pushMap[name]);
       }, 500);
+    // 监听swiping和direction，获取滑动状态，切换对应页面
     watchEffect(() => {
       if (swiping.value && direction.value === 'left') {
         push();
