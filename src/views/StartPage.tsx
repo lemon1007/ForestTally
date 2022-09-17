@@ -4,7 +4,6 @@ import {Button} from '../shared/Button';
 import {FloatButton} from '../shared/FloatButton';
 import {Center} from '../shared/Center';
 import {Icon} from '../shared/Icon';
-import {Navbar} from '../shared/Navbar';
 import s from '../stylesheets/StartPage.module.scss';
 import {Overlay} from '../shared/Overlay';
 import {MainLayout} from '../layouts/MainLayout';
