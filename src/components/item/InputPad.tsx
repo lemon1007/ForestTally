@@ -35,7 +35,6 @@ export const InputPad = defineComponent({
           </span>
           <span class={s.amount}>123456789</span>
         </div>
-
           <div class={s.notes}>
             <Icon name="test" class={s.notes_icon}></Icon>
             <input placeholder="备注"></input>
