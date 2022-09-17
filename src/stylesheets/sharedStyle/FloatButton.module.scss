@@ -1,0 +1,18 @@
+.floatButton {
+  background: var(--floatButton-bg);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  .icon {
+    width: 27px;
+    height: 27px;
+    fill: var(--floatButton-text);
+  }
+}

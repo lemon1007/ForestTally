@@ -1,5 +1,5 @@
 import {defineComponent} from 'vue';
-import s from '../stylesheets/componentStyle/button.module.scss';
+import s from '../stylesheets/sharedStyle/button.module.scss';
 
 interface Props {
   onClick: (e: MouseEvent) => void;
