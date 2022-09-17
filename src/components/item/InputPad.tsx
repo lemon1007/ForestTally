@@ -1,6 +1,8 @@
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
 import s from '../../stylesheets/item/InputPad.module.scss';
 import {Icon} from '../../shared/Icon';
+import {DatetimePicker, NumberKeyboard, Popup} from 'vant';
+import {time} from '../../shared/time';
 
 export const InputPad = defineComponent({
   props: {
@@ -9,6 +11,8 @@ export const InputPad = defineComponent({
     }
   },
   setup: (props, context) => {
+    const refDate = ref<Date>();
+    const now = Date();
     const buttons = [
       {text: '1', onClick: () => {}},
       {text: '2', onClick: () => {}},
@@ -27,18 +31,34 @@ export const InputPad = defineComponent({
       {text: '回删', onClick: () => {}},
       {text: '提交', onClick: () => {}},
     ];
+    const refDatePickerVisible = ref(false);
+    const showDatePicker = () => refDatePickerVisible.value = true;
+    const hideDatePicker = () => refDatePickerVisible.value = false;
+    const setDate = (date: Date) => {
+      refDate.value = date;
+      hideDatePicker();
+    };
     return () => (<>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
             <Icon name="test" class={s.date_icon}></Icon>
-            <span class={s.date}>2022-09-17</span>
+            <span class={s.date}>
+              <span onClick={showDatePicker}>{time(refDate.value).format()}</span>
+              <Popup position="bottom" v-model:show={refDatePickerVisible.value}>
+                <DatetimePicker value={refDate.value}
+                              type="date" title="请选择时间"
+                              onConfirm={setDate}
+                              onCancel={hideDatePicker}/>
+              </Popup>
+          </span>
           </span>
           <span class={s.amount}>123456789</span>
         </div>
-          <div class={s.notes}>
-            <Icon name="test" class={s.notes_icon}></Icon>
-            <input placeholder="备注"></input>
-          </div>
+
+        <div class={s.notes}>
+          <Icon name="test" class={s.notes_icon}></Icon>
+          <input placeholder="备注"></input>
+        </div>
 
         <div class={s.buttons}>
           {buttons.map(button =>
