@@ -6,35 +6,58 @@
   padding: 10px 8px;
   border-top: var(--input-pad-button-border);
 
-  .notes {
+  .createdAt {
     width: 50%;
     display: flex;
     align-items: center;
-    padding-left: 5px;
+    padding-left: 7px;
 
-    > input {
-      width: 80%;
-      border: none;
-      font-size: 14px;
-      padding-left: 8px;
-      padding-top: 2px;
+    .date {
+      font-size: 13px;
+      padding-top: 1px;
+      padding-left: 3px;
 
-      &:focus {
-        outline: none;
+      &_icon {
+        width: 23px;
+        height: 23px;
       }
-    }
-
-    > .icon {
-      width: 23px;
-      height: 23px;
     }
   }
 
   .amount {
     width: 50%;
     text-align: right;
+    font-size: 18px;
+    margin-right: 10px;
+    font-family: "Fira Code", monospace;
+    color: var(--overlay-header-bg);
   }
 }
+
+.notes {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  border-top: var(--input-pad-button-border);
+
+  > input {
+    width: 80%;
+    border: none;
+    font-size: 13px;
+    padding-left: 8px;
+    padding-top: 1px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_icon {
+    width: 23px;
+    height: 23px;
+  }
+}
+
 
 .buttons {
   display: flex;
@@ -46,7 +69,7 @@
     border-right: var(--input-pad-button-border);
     border-bottom: var(--input-pad-button-border);
     width: 25%;
-    height: 50px;
+    height: 45px;
     background: transparent;
 
     &:nth-child(4n) {
