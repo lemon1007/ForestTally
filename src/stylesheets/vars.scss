@@ -6,5 +6,7 @@
   --button-radius: 8px;
   --button-height: 48px;
   --floatButton-bg: var(--button-bg);
-  --floatButton-text: white;
+  --floatButton-text: var(--button-text);
+  --navBar-bg:var(--button-bg);
+  --navBar-text:var(--button-text);
 }
