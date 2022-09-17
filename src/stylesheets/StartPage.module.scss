@@ -1,5 +1,14 @@
+.icon_wrapper {
+  padding: 150px 0;
+  .icon {
+    width: 128px;
+    height: 128px;
+  }
+}
+
 .button {
   width: 100%;
+
   &_wrapper {
     padding: 16px;
   }
