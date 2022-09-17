@@ -3,6 +3,7 @@ import s from '../../stylesheets/item/ItemCreate.module.scss';
 import {Icon} from '../../shared/Icon';
 import {MainLayout} from '../../layouts/MainLayout';
 import {Tabs, Tab} from '../../shared/Tabs';
+import {InputPad} from './InputPad';
 
 
 export const ItemCreate = defineComponent({
@@ -27,6 +28,9 @@ export const ItemCreate = defineComponent({
                 收入列表
               </Tab>
             </Tabs>
+            <div class={s.inputPad_wrapper}>
+              <InputPad/>
+            </div>
           </>
         }
       }</MainLayout>
