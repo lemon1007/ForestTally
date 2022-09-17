@@ -7,6 +7,10 @@
   --button-height: 48px;
   --floatButton-bg: var(--button-bg);
   --floatButton-text: var(--button-text);
-  --navBar-bg:var(--button-bg);
-  --navBar-text:var(--button-text);
+  --navBar-bg: var(--button-bg);
+  --navBar-text: var(--button-text);
+  --z-index-overlay: 16;
+  --overlay-mask-bg: rgba(0, 0, 0, 0.5);
+  --overlay-bg: white;
+  --top-safe-area-height:24px;
 }
