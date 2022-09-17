@@ -80,7 +80,8 @@ export const InputPad = defineComponent({
     // v-model绑定input输入框的值
     const refNotes = reactive({notes: ''});
 
-    return () => (<>
+    return () => (
+      <div>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
             <Icon name="test" class={s.date_icon}></Icon>
@@ -105,7 +106,7 @@ export const InputPad = defineComponent({
             <button onClick={button.onClick}>{button.text}</button>)
           }
         </div>
-      </>
+      </div>
     );
   }
 });

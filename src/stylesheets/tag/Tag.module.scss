@@ -46,7 +46,7 @@
       flex-direction: row;
       align-items: center;
 
-      .formItem_name_icon{
+      .formItem_name_icon {
         padding-left: 7px;
         padding-top: -2px;
       }
@@ -62,5 +62,15 @@
     margin-top: 4px;
     color: var(--error-color);
     font-size: 12px;
+  }
+}
+
+.actions {
+  padding:0 16px;
+  display: flex;
+  justify-content: space-between;
+
+  .removeTags, .removeTagsAndItems {
+    width: calc(50% - 8px);
   }
 }
