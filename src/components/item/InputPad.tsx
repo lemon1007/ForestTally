@@ -1,7 +1,7 @@
-import {defineComponent, PropType, ref} from 'vue';
+import {defineComponent, PropType, reactive, ref} from 'vue';
 import s from '../../stylesheets/item/InputPad.module.scss';
 import {Icon} from '../../shared/Icon';
-import {DatetimePicker, NumberKeyboard, Popup} from 'vant';
+import {DatetimePicker, Popup} from 'vant';
 import {time} from '../../shared/time';
 
 export const InputPad = defineComponent({
@@ -62,7 +62,12 @@ export const InputPad = defineComponent({
           }
         }
       },
-      {text: '提交', onClick: () => {}},
+      {
+        text: '提交', onClick: () => {
+          refAmount.value = '0';
+          refNotes.notes = '';
+        }
+      },
     ];
     const refDatePickerVisible = ref(false);
     const showDatePicker = () => refDatePickerVisible.value = true;
@@ -72,7 +77,9 @@ export const InputPad = defineComponent({
       hideDatePicker();
     };
     const refAmount = ref('0');
-    const refNotes = ref('');
+    // v-model绑定input输入框的值
+    const refNotes = reactive({notes: ''});
+
     return () => (<>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
@@ -90,7 +97,7 @@ export const InputPad = defineComponent({
 
         <div class={s.notes}>
           <Icon name="test" class={s.notes_icon}></Icon>
-          <input placeholder="添加备注">{refNotes.value}</input>
+          <input placeholder="添加备注" v-model={refNotes.notes}></input>
         </div>
 
         <div class={s.buttons}>
