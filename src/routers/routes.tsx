@@ -12,6 +12,9 @@ import {ForthAction} from '../components/welcome/Footer/ForthAction';
 import {ItemPage} from '../views/ItemPage';
 import {ItemList} from '../components/item/ItemList';
 import {ItemCreate} from '../components/item/ItemCreate';
+import {TagCreate} from '../components/tag/TagCreate';
+import {TagEdit} from '../components/tag/TagEdit';
+import {TagPage} from '../views/TagPage';
 
 export const routes: RouteRecordRaw[] = [
   {path: '/', redirect: '/welcome'},
@@ -32,6 +35,13 @@ export const routes: RouteRecordRaw[] = [
     children: [
       {path: '', component: ItemList},
       {path: '/create', component: ItemCreate}
+    ]
+  },
+  {
+    path: '/tags', component: TagPage,
+    children: [
+      {path: 'create', component: TagCreate},
+      {path: ':id', component: TagEdit}
     ]
   }
 ];
