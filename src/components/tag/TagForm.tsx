@@ -57,7 +57,7 @@ export const TagForm = defineComponent({
             </div>
           </label>
         </div>
-        <p class={s.tips}>记账时长按标签即可进行编辑</p>
+        {/*<p class={s.tips}>记账时长按标签即可进行编辑</p>*/}
         <div class={s.formRow}>
           <div class={s.formItem_value}>
             <Button class={[s.formItem, s.button]}>确定</Button>

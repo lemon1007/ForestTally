@@ -1,8 +1,7 @@
-.tips {
-  text-align: center;
-  padding: 5px 0;
-  font-size: 14px;
-}
+//.tips {
+//  text-align: center;
+//  font-size: 14px;
+//}
 
 .form {
   padding: 16px;
@@ -72,5 +71,7 @@
 
   .removeTags, .removeTagsAndItems {
     width: calc(50% - 8px);
+    font-size: 14px;
+    height: 40px;
   }
 }
