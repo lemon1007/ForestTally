@@ -15,7 +15,7 @@
     .date {
       font-size: 13px;
       padding-top: 1px;
-      padding-left: 3px;
+      padding-left: 7px;
 
       &_icon {
         width: 23px;
@@ -69,7 +69,7 @@
     border-right: var(--input-pad-button-border);
     border-bottom: var(--input-pad-button-border);
     width: 25%;
-    height: 45px;
+    height: 50px;
     background: transparent;
 
     &:nth-child(4n) {
@@ -79,8 +79,16 @@
     &:nth-child(13),
     &:nth-child(14),
     &:nth-child(15),
-    &:nth-child(16), {
+    &:nth-child(16) {
       border-bottom: none;
+    }
+
+    &:nth-child(16) {
+      border-bottom: none;
+      background: var(--overlay-header-bg);
+      color: var(--overlay-bg);
+      margin-top: -100px;
+      height: 150px;
     }
   }
 }
