@@ -16,4 +16,31 @@
   left: 0;
   width: 16em;
   height: calc(100% - var(--top-safe-area-height));
+
+  &_header {
+    background: var(--overlay-header-bg);
+    color: white;
+    padding: 20px 13px;
+    box-shadow: 0 -0.2px white;
+  }
+
+  &_main {
+    padding: 13px;
+
+    > ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      > li {
+        line-height: 40px;
+        display: flex;
+        align-items: center;
+
+        > span {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
 }
