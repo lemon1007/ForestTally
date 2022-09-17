@@ -1,9 +1,9 @@
-import s from '../../../stylesheets/Welcome/WelcomeLayout.module.scss';
+import s from '../../../stylesheets/Welcome.module.scss';
 import {FunctionalComponent} from 'vue';
 
 export const Third:FunctionalComponent = () => {
   return (
-    <div class={s.wrapper}>
+    <div class={s.mainWrapper}>
       <div class={s.card}>
         <svg class={s.iconStyle}>
           <use xlinkHref="#third"></use>

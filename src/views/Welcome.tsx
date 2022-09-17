@@ -1,6 +1,6 @@
 import {defineComponent, ref, Transition, VNode, watchEffect} from 'vue';
 import {RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter} from 'vue-router';
-import s from '../stylesheets/Welcome/Welcome.module.scss';
+import s from '../stylesheets/Welcome.module.scss';
 import {useSwipe} from '../hooks/useSwipe';
 import {throttle} from '../shared/throttle';
 
