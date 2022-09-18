@@ -7,6 +7,7 @@ import {ItemSummary} from './ItemSummary';
 import {Time} from '../../shared/time';
 import {Overlay} from 'vant';
 import {Form, FormItem} from '../../shared/Form';
+import {OverlayIcon} from '../../shared/Overlay';
 
 export const ItemList = defineComponent({
   setup: (props, context) => {
@@ -35,7 +36,7 @@ export const ItemList = defineComponent({
       <MainLayout>{
         {
           title: () => '森林记账',
-          icon: () => <Icon name="menu"></Icon>,
+          icon: () => <OverlayIcon/>,
           default: () => <>
             <Tabs classPrefix={'itemList'}
                   v-model:selected={refSelected.value}

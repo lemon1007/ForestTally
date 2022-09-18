@@ -5,7 +5,7 @@ import {FloatButton} from '../shared/FloatButton';
 import {Center} from '../shared/Center';
 import {Icon} from '../shared/Icon';
 import s from '../stylesheets/StartPage.module.scss';
-import {Overlay} from '../shared/Overlay';
+import {OverlayIcon} from '../shared/Overlay';
 import {MainLayout} from '../layouts/MainLayout';
 
 export const StartPage = defineComponent({
@@ -13,13 +13,12 @@ export const StartPage = defineComponent({
     const refOverlayVisible = ref(false);
     const onClickMenu = () => {
       refOverlayVisible.value = !refOverlayVisible.value;
-      console.log(refOverlayVisible.value);
     };
     return () => (
       <MainLayout>{
         {
           title: () => '森林记账',
-          icon: () => <Icon name="menu" class={s.navIcon} onClick={onClickMenu}/>,
+          icon: () => <OverlayIcon/>,
           default: () => <>
             <Center class={s.icon_wrapper}>
               <Icon name="tree" class={s.icon}></Icon>
@@ -32,10 +31,6 @@ export const StartPage = defineComponent({
             <RouterLink to="item/create">
               <FloatButton IconName="add"/>
             </RouterLink>
-            {
-              refOverlayVisible.value &&
-              <Overlay onClose={() => refOverlayVisible.value = false}/>
-            }
           </>
         }
       }</MainLayout>
