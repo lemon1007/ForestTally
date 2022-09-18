@@ -5,6 +5,7 @@ import {validate} from '../shared/validate';
 import {Icon} from '../shared/Icon';
 import s from '../stylesheets/SignInPage.module.scss';
 import {Button} from '../shared/Button';
+import axios from 'axios';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -27,8 +28,9 @@ export const SignInPage = defineComponent({
         {key: 'code', type: 'required', message: '必填'},
       ]));
     };
-    const onClickSendValidationCode = () => {
-      console.log('aaa');
+    const onClickSendValidationCode = async () => {
+      const response = await axios.post('/api/v1/validation_codes', {email: formData.email});
+      console.log(response);
     };
     return () => (
       <MainLayout>{
