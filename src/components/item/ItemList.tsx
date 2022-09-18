@@ -3,6 +3,7 @@ import {MainLayout} from '../../layouts/MainLayout';
 import s from '../../stylesheets/item/ItemList.module.scss';
 import {Icon} from '../../shared/Icon';
 import {Tab, Tabs} from '../../shared/Tabs';
+import {ItemSummary} from '../../stylesheets/item/ItemSummary';
 
 export const ItemList = defineComponent({
   props: {
@@ -17,22 +18,22 @@ export const ItemList = defineComponent({
         {
           title: () => '森林记账',
           icon: () => <Icon name="menu"></Icon>,
-          default: () => (
+          default: () => <>
             <Tabs v-model:selected={refSelected.value} classPrefix={'itemList'}>
               <Tab name="本月">
-                本月list
+                <ItemSummary/>
               </Tab>
               <Tab name="上个月">
-                上个月list
+                <ItemSummary/>
               </Tab>
               <Tab name="今年">
-                今年list
+                <ItemSummary/>
               </Tab>
               <Tab name="自定义">
-                自定义list
+                <ItemSummary/>
               </Tab>
             </Tabs>
-          )
+          </>
         }
       }</MainLayout>
     );
