@@ -6,6 +6,7 @@ import {Tab, Tabs} from '../../shared/Tabs';
 import {ItemSummary} from './ItemSummary';
 import {Time} from '../../shared/time';
 import {Overlay} from 'vant';
+import {Form, FormItem} from '../../shared/Form';
 
 export const ItemList = defineComponent({
   setup: (props, context) => {
@@ -56,16 +57,16 @@ export const ItemList = defineComponent({
                   请选择时间
                 </header>
                 <main>
-                  {/*<Form onSubmit={onSubmitCustomTime}>*/}
-                  {/*  <FormItem label="开始时间" v-model={customTime.start} type="date"/>*/}
-                  {/*  <FormItem label="结束时间" v-model={customTime.end} type="date"/>*/}
-                  {/*  <FormItem>*/}
-                  {/*    <div class={s.actions}>*/}
-                  {/*      <button type="button">取消</button>*/}
-                  {/*      <button type="submit">确认</button>*/}
-                  {/*    </div>*/}
-                  {/*  </FormItem>*/}
-                  {/*</Form>*/}
+                  <Form onSubmit={onSubmitCustomTime}>
+                    <FormItem label="开始时间" v-model={customTime.start} type="date"/>
+                    <FormItem label="结束时间" v-model={customTime.end} type="date"/>
+                    <FormItem>
+                      <div class={s.actions}>
+                        <button type="button">取消</button>
+                        <button type="submit">确认</button>
+                      </div>
+                    </FormItem>
+                  </Form>
                 </main>
               </div>
             </Overlay>
