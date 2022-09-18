@@ -1,5 +1,6 @@
 :root {
   --transition-duration: 0.5s;
+  --bg: white;
   --button-bg: #42b983;
   --button-text: white;
   --button-font-size: 18px;
@@ -8,6 +9,7 @@
   --button-bg-danger: #e10505;
   --button-border-color: #ddd;
   --date-text: #999999;
+  --dialog-header-text: white;
   --floatButton-bg: var(--button-bg);
   --floatButton-text: var(--button-text);
   --navBar-bg: var(--button-bg);

@@ -13,8 +13,8 @@ export const ItemList = defineComponent({
     const refSelected = ref('本月');
     const time = new Time();
     const customTime = reactive({
-      start: new Time(),
-      end: new Time()
+      start: new Time().format(),
+      end: new Time().format()
     });
     const timeList = [
       {start: time.firstDayOfMonth(), end: time.lastDayOfMonth()},
@@ -47,8 +47,8 @@ export const ItemList = defineComponent({
               <Tab name="今年">
                 <ItemSummary startDate={timeList[2].start.format()} endDate={timeList[2].end.format()}/>
               </Tab>
-              <Tab name="自定义">
-                <ItemSummary startDate={customTime.start.format()} endDate={customTime.end.format()}/>
+              <Tab name="自定义时间">
+                <ItemSummary startDate={customTime.start} endDate={customTime.end}/>
               </Tab>
             </Tabs>
             <Overlay show={refOverlayVisible.value} class={s.overlay}>
