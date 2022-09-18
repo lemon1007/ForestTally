@@ -10,6 +10,9 @@
   width: 100%;
 }
 
+
+// 待解决
+// 切换手机型号之后高度不适配
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -41,13 +44,10 @@
   fill: var(--main);
 }
 
-// 待解决
-// 元素好像自动均分在整个范围内了
 .tagList_wrapper {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: 42vh;
 }
 
 .tag {

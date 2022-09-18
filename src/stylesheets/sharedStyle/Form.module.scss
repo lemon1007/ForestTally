@@ -23,15 +23,27 @@
     flex-grow: 1;
     border: 1px solid var(--input-border-color);
     border-radius: var(--input-radius);
-    font-size: 18px;
     font-family: inherit;
     padding-left: 16px;
     padding-right: 16px;
     box-shadow: inset 0 0 3px var(--input-shadow);
+    font-size: var(--input-font-size);
 
     &.error {
       border-color: var(--error-color);
     }
+  }
+
+  &.validationCodeInput {
+    flex-grow: 0;
+    width: 45%;
+    height: var(--input-min-height);
+  }
+
+  &.validationCodeButton {
+    flex-grow: 1;
+    margin-left: 16px;
+    height: var(--button-login-height);
   }
 
   &_name {

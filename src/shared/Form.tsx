@@ -3,6 +3,7 @@ import {computed, defineComponent, PropType, reactive, ref} from 'vue';
 import {EmojiSelect} from './EmojiSelect ';
 import s from '../stylesheets/sharedStyle/Form.module.scss';
 import {Time} from './time';
+import {Button} from './Button';
 
 export const Form = defineComponent({
   props: {
@@ -28,11 +29,12 @@ export const FormItem = defineComponent({
       type: [String, Number]
     },
     type: {
-      type: String as PropType<'text' | 'emojiSelect' | 'date'>,
+      type: String as PropType<'text' | 'emojiSelect' | 'date' | 'validationCode'>,
     },
     error: {
       type: String
-    }
+    },
+    placeholder: String,
   },
   emits: ['update:modelValue'],
   setup: (props, context) => {
@@ -46,6 +48,7 @@ export const FormItem = defineComponent({
         case 'text':
           return <input
             value={props.modelValue}
+            placeholder={props.placeholder}
             onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
             class={[s.formItem, s.input]}/>;
         case 'emojiSelect':
@@ -53,9 +56,16 @@ export const FormItem = defineComponent({
             modelValue={props.modelValue?.toString()}
             onUpdateModelValue={value => context.emit('update:modelValue', value)}
             class={[s.formItem, s.emojiList, s.error]}/>;
+        case 'validationCode':
+          return <>
+            <input class={[s.formItem, s.input, s.validationCodeInput]}
+                   placeholder={props.placeholder}/>
+            <Button class={[s.formItem, s.validationCodeButton]}>提交</Button>
+          </>;
         case 'date':
           return <>
             <input readonly={true} value={props.modelValue}
+                   placeholder={props.placeholder}
                    onClick={() => { refDateVisible.value = true; }}
                    class={[s.formItem, s.input]}/>
             <Popup position="bottom" v-model:show={refDateVisible.value}>
@@ -81,7 +91,7 @@ export const FormItem = defineComponent({
           </div>
           {props.error &&
             <div class={s.formItem_errorHint}>
-              <span>{props.error}</span>
+              <span>{props.error ?? ' '}</span>
             </div>
           }
         </label>
