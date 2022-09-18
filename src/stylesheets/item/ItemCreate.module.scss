@@ -13,8 +13,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  //待解决
-  height: 48vh;
+  height: 47vh;
 }
 
 .tabs {
@@ -42,8 +41,16 @@
   fill: var(--main);
 }
 
+// 待解决
+// 元素好像自动均分在整个范围内了
+.tagList_wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  height: 42vh;
+}
+
 .tag {
-  position: relative;
   width: 20vw;
   height: calc(20vw * 1.14);
   display: flex;

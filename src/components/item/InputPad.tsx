@@ -81,7 +81,7 @@ export const InputPad = defineComponent({
     const refNotes = reactive({notes: ''});
 
     return () => (
-      <div>
+      <div class={s.inputPad_wrapper}>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
             <Icon name="test" class={s.date_icon}></Icon>

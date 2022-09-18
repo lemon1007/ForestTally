@@ -1,4 +1,4 @@
-import {defineComponent, onUpdated, PropType, ref} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
 import s from '../../stylesheets/item/ItemCreate.module.scss';
 import {Icon} from '../../shared/Icon';
 import {MainLayout} from '../../layouts/MainLayout';
@@ -69,24 +69,26 @@ export const ItemCreate = defineComponent({
             <div class={s.wrapper}>
               <Tabs v-model:selected={refKind.value} class={s.tabs}>
                 <Tab name="支出" class={s.tags_wrapper}>
-                  <div class={s.tag}>
-                    <div class={s.sign}>
-                      <Icon name="add" class={s.createTag}/>
-                    </div>
-                    <div class={s.name}>
-                      新增
-                    </div>
-                  </div>
-                  {refExpensesTags.value.map(tag =>
-                    <div class={[s.tag, s.selected]}>
+                  <div class={s.tagList_wrapper}>
+                    <div class={s.tag}>
                       <div class={s.sign}>
-                        {tag.sign}
+                        <Icon name="add" class={s.createTag}/>
                       </div>
                       <div class={s.name}>
-                        {tag.name}
+                        <span>新增</span>
                       </div>
                     </div>
-                  )}
+                    {refExpensesTags.value.map(tag =>
+                      <div class={[s.tag, s.selected]}>
+                        <div class={s.sign}>
+                          {tag.sign}
+                        </div>
+                        <div class={s.name}>
+                          {tag.name}
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </Tab>
 
 
@@ -96,7 +98,7 @@ export const ItemCreate = defineComponent({
                       <Icon name="add" class={s.createTag}/>
                     </div>
                     <div class={s.name}>
-                      新增
+                      <span>新增</span>
                     </div>
                   </div>
                   {refIncomeTags.value.map(tag =>

@@ -32,13 +32,15 @@ export const routes: RouteRecordRaw[] = [
   {path: '/start', component: StartPage},
   {
     path: '/item', component: ItemPage,
+    redirect: '/item/list',
     children: [
-      {path: '', component: ItemList},
+      {path: 'list', component: ItemList},
       {path: '/create', component: ItemCreate}
     ]
   },
   {
     path: '/tags', component: TagPage,
+    redirect: '/tags/create',
     children: [
       {path: 'create', component: TagCreate},
       {path: ':id/edit', component: TagEdit}
