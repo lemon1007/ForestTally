@@ -6,6 +6,8 @@
   --button-radius: 8px;
   --button-height: 48px;
   --button-bg-danger: #e10505;
+  --button-border-color: #ddd;
+  --date-text: #999999;
   --floatButton-bg: var(--button-bg);
   --floatButton-text: var(--button-text);
   --navBar-bg: var(--button-bg);
@@ -26,4 +28,11 @@
   --emoji-nav-text-selected: #333;
   --tag-bg: #EFEFEF;
   --main: #42b983;
+  --total-bg: #252A43;
+  --total-text: white;
+  --total-income: #FE7275;
+  --total-expenses: #53A867;
+  --list-tag-text: #333;
+  --list-amount-text: var(--amount-text);
+  --list-time-text: var(--date-text);
 }
