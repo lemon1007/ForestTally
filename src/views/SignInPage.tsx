@@ -35,7 +35,7 @@ export const SignInPage = defineComponent({
           // 失败
           console.log('error');
         });
-      // 成功
+      // 成功,refValidationCode.value传给startCount，从而触发倒计时
       refValidationCode.value.startCount();
       console.log(response);
     };
