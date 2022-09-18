@@ -34,6 +34,7 @@ export const FormItem = defineComponent({
       type: String
     }
   },
+  emits: ['update:modelValue'],
   setup: (props, context) => {
     const formData = reactive({
       name: '',
@@ -51,7 +52,7 @@ export const FormItem = defineComponent({
           return <EmojiSelect
             modelValue={props.modelValue?.toString()}
             onUpdateModelValue={value => context.emit('update:modelValue', value)}
-            class={[s.formItem, s.emojiList, s.error]} />
+            class={[s.formItem, s.emojiList, s.error]}/>;
         case 'date':
           return <>
             <input readonly={true} value={props.modelValue}
