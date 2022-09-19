@@ -15,52 +15,26 @@ export const ItemCreate = defineComponent({
     }
   },
   setup: (props, context) => {
+    // 支出tag列表
     const refKind = ref('支出');
     onMounted(async () => {
       const response = await http.get<{ resources: Tag[] }>('/tags', {
         kind: 'expenses',
-        _mock: 'tagIndexExpenses'
+        _mock: 'tagIndex'
       });
       refExpensesTags.value = response.data.resources;
     });
     const refExpensesTags = ref<Tag[]>([]);
-    const refIncomeTags = ref([
-      {id: 4, name: '工资', sign: '￥', category: 'income'},
-      {id: 5, name: '彩票', sign: '￥', category: 'income'},
-      {id: 6, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 11, name: '彩票', sign: '￥', category: 'income'},
-      {id: 18, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 17, name: '彩票', sign: '￥', category: 'income'},
-      {id: 19, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 4, name: '工资', sign: '￥', category: 'income'},
-      {id: 5, name: '彩票', sign: '￥', category: 'income'},
-      {id: 6, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 11, name: '彩票', sign: '￥', category: 'income'},
-      {id: 18, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 17, name: '彩票', sign: '￥', category: 'income'},
-      {id: 19, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 4, name: '工资', sign: '￥', category: 'income'},
-      {id: 5, name: '彩票', sign: '￥', category: 'income'},
-      {id: 6, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 11, name: '彩票', sign: '￥', category: 'income'},
-      {id: 18, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 17, name: '彩票', sign: '￥', category: 'income'},
-      {id: 19, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 4, name: '工资', sign: '￥', category: 'income'},
-      {id: 5, name: '彩票', sign: '￥', category: 'income'},
-      {id: 6, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 11, name: '彩票', sign: '￥', category: 'income'},
-      {id: 18, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 17, name: '彩票', sign: '￥', category: 'income'},
-      {id: 19, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 4, name: '工资', sign: '￥', category: 'income'},
-      {id: 5, name: '彩票', sign: '￥', category: 'income'},
-      {id: 6, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 11, name: '彩票', sign: '￥', category: 'income'},
-      {id: 18, name: '滴滴', sign: '￥', category: 'income'},
-      {id: 17, name: '彩票', sign: '￥', category: 'income'},
-      {id: 19, name: '滴滴', sign: '￥', category: 'income'},
-    ]);
+
+    // 收入tag列表
+    onMounted(async () => {
+      const response = await http.get<{ resources: Tag[] }>('/tags', {
+        kind: 'income',
+        _mock: 'tagIndex'
+      });
+      refIncomeTags.value = response.data.resources;
+    });
+    const refIncomeTags = ref<Tag[]>([]);
     return () => (
       <MainLayout>{
         {
