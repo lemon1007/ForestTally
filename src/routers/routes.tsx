@@ -17,6 +17,7 @@ import {TagEdit} from '../components/tag/TagEdit';
 import {TagPage} from '../views/TagPage';
 import {SignInPage} from '../views/SignInPage';
 import {StatisticsPage} from '../views/StatisticsPage';
+import {http} from '../shared/Http';
 
 export const routes: RouteRecordRaw[] = [
   {path: '/', redirect: '/welcome'},
@@ -37,15 +38,13 @@ export const routes: RouteRecordRaw[] = [
   {path: '/start', component: StartPage},
   {
     path: '/item', component: ItemPage,
-    redirect: '/item/list',
     children: [
-      {path: 'list', component: ItemList},
-      {path: '/create', component: ItemCreate}
+      {path: '', component: ItemList},
+      {path: 'create', component: ItemCreate}
     ]
   },
   {
     path: '/tags', component: TagPage,
-    redirect: '/tags/create',
     children: [
       {path: 'create', component: TagCreate},
       {path: ':id/edit', component: TagEdit}
