@@ -1,7 +1,7 @@
 import {defineComponent, PropType, reactive, ref} from 'vue';
 import {Form, FormItem} from '../shared/Form';
 import {MainLayout} from '../layouts/MainLayout';
-import {validate} from '../shared/validate';
+import {hasError, validate} from '../shared/validate';
 import {Icon} from '../shared/Icon';
 import s from '../stylesheets/SignInPage.module.scss';
 import {Button} from '../shared/Button';
@@ -20,7 +20,9 @@ export const SignInPage = defineComponent({
     });
     const refValidationCode = ref<any>();
     const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
-    const onSubmit = (e: Event) => {
+
+    // 登录提交信息
+    const onSubmit = async (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
         email: [], code: []
@@ -30,6 +32,9 @@ export const SignInPage = defineComponent({
         {key: 'email', type: 'pattern', regex: /.+@.+/, message: '必须是邮箱地址'},
         {key: 'code', type: 'required', message: '必填'},
       ]));
+      if (!hasError(errors)) {
+        const response = await http.post('/session', formData);
+      }
     };
     // 错误数据处理，422 => 邮箱格式不正确
     const onError = (error: any) => {
@@ -38,6 +43,7 @@ export const SignInPage = defineComponent({
       }
       throw error;
     };
+    // 验证码获取
     const onClickSendValidationCode = async () => {
       disabled();
       // .catch 失败，具体业务error写(拦截)在这里
@@ -47,7 +53,6 @@ export const SignInPage = defineComponent({
         .finally(enabled);
       // 成功,refValidationCode.value传给startCount，从而触发倒计时
       refValidationCode.value.startCount();
-      console.log(response);
     };
     return () => (
       <MainLayout>{
@@ -73,7 +78,7 @@ export const SignInPage = defineComponent({
                           disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>
                 <FormItem style={{paddingTop: '96px'}}>
-                  <Button>登录</Button>
+                  <Button type="submit">登录</Button>
                 </FormItem>
               </Form>
             </div>

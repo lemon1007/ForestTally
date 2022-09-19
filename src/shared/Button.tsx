@@ -4,7 +4,7 @@ import s from '../stylesheets/sharedStyle/button.module.scss';
 export const Button = defineComponent({
   props: {
     onClick: {
-      type: Function as PropType<(e: MouseEvent) => void>
+      type: Function as PropType<() => void>
     },
     level: {
       type: String as PropType<'important' | 'normal' | 'danger'>,
@@ -36,7 +36,6 @@ export const Button = defineComponent({
       }
     });
     const onClick = () => {
-      // @ts-ignore
       props.onClick?.();
       selfDisabled.value = true;
       setTimeout(() => {

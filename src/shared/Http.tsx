@@ -1,6 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig} from 'axios';
 import {Dialog} from 'vant';
-import alert = Dialog.alert;
 
 type JSONValue = string | number | null | boolean | JSONValue[] | { [key: string]: JSONValue };
 
