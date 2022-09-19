@@ -1,5 +1,5 @@
 import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-import {mockSession, mockTagIndex} from '../mock/mock';
+import {mockItemCreate, mockSession, mockTagIndex} from '../mock/mock';
 import {JSONValue} from '../env';
 
 type GetConfig = Omit<AxiosRequestConfig, 'params' | 'url' | 'method'>
@@ -44,6 +44,9 @@ const mock = (response: AxiosResponse) => {
     case 'session':
       [response.status, response.data] = mockSession(response.config);
       return true;
+    case 'itemCreate':
+      [response.status, response.data] = mockItemCreate(response.config);
+      return true;
   }
   return false;
 };
@@ -59,14 +62,18 @@ http.instance.interceptors.request.use(config => {
 });
 
 http.instance.interceptors.response.use((response) => {
-  // 篡改respose
   mock(response);
-  return response;
-}, (error) => {
-  if (mock(error.response)) {
-    return error.response;
+  if (response.status >= 400) {
+    throw {response};
   } else {
+    return response;
+  }
+}, (error) => {
+  mock(error.response);
+  if (error.response.status >= 400) {
     throw error;
+  } else {
+    return error.response;
   }
 });
 

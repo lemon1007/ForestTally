@@ -24,11 +24,11 @@ export const StartPage = defineComponent({
               <Icon name="tree" class={s.icon}></Icon>
             </Center>
             <div class={s.button_wrapper}>
-              <RouterLink to="/item/create">
+              <RouterLink to="/items/create">
                 <Button class={s.button}>开始记账</Button>
               </RouterLink>
             </div>
-            <RouterLink to="/item/create">
+            <RouterLink to="/items/create">
               <FloatButton IconName="add"/>
             </RouterLink>
           </>
