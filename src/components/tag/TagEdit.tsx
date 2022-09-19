@@ -4,13 +4,14 @@ import {Icon} from '../../shared/Icon';
 import {TagForm} from './TagForm';
 import {Button} from '../../shared/Button';
 import s from '../../stylesheets/tag/Tag.module.scss';
+import {BackIcon} from '../../shared/BackIcon';
 
 export const TagEdit = defineComponent({
   setup: (props, context) => {
     return () => (
       <MainLayout>{{
         title: () => '新建标签',
-        icon: () => <Icon name="return" onClick={() => { }}/>,
+        icon: () => <BackIcon/>,
         default: () => <>
           <TagForm/>
           <div class={s.actions}>
