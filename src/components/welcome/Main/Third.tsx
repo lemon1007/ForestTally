@@ -7,7 +7,7 @@ export const Third:FunctionalComponent = () => {
       <div class={s.card}>
         <svg class={s.iconStyle}>
           <use xlinkHref="#third"></use>
-        </svg>,
+        </svg>
         <div class={s.fontStyle}>
           <div>这是三段话<br/>还会有第四段哦</div>
         </div>

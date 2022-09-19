@@ -8,7 +8,6 @@ export const First: FunctionalComponent = () => {
         <svg class={s.iconStyle}>
           <use xlinkHref="#first"></use>
         </svg>
-        ,
         <div class={s.fontStyle}>
           <div>这是一段话<br/>这里还有一段话</div>
         </div>
