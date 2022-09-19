@@ -1,4 +1,4 @@
-import {defineComponent, PropType} from 'vue';
+import {computed, defineComponent, PropType, ref} from 'vue';
 import s from '../stylesheets/sharedStyle/button.module.scss';
 
 export const Button = defineComponent({
@@ -18,13 +18,36 @@ export const Button = defineComponent({
       type: Boolean,
       default: false
     },
+    autoSelfDisabled: {
+      type: Boolean,
+      default: false
+    }
   },
   setup: (props, context) => {
+    const selfDisabled = ref(false);
+    const _disabled = computed(() => {
+      if (props.autoSelfDisabled === false) {
+        return props.disabled;
+      }
+      if (selfDisabled.value) {
+        return true;
+      } else {
+        return props.disabled;
+      }
+    });
+    const onClick = () => {
+      // @ts-ignore
+      props.onClick?.();
+      selfDisabled.value = true;
+      setTimeout(() => {
+        selfDisabled.value = false;
+      }, 1000);
+    };
     return () => (
       <button type={props.type}
               class={[s.button, s[props.level]]}
-              disabled={props.disabled}
-              onClick={props.onClick}>
+              disabled={_disabled.value}
+              onClick={onClick}>
         {context.slots.default?.()}
       </button>
     );

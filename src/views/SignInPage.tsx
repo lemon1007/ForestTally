@@ -5,8 +5,8 @@ import {validate} from '../shared/validate';
 import {Icon} from '../shared/Icon';
 import s from '../stylesheets/SignInPage.module.scss';
 import {Button} from '../shared/Button';
-import axios from 'axios';
 import {http} from '../shared/Http';
+import {useBool} from '../hooks/useBool';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -19,6 +19,7 @@ export const SignInPage = defineComponent({
       code: []
     });
     const refValidationCode = ref<any>();
+    const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
     const onSubmit = (e: Event) => {
       e.preventDefault();
       Object.assign(errors, {
@@ -38,9 +39,12 @@ export const SignInPage = defineComponent({
       throw error;
     };
     const onClickSendValidationCode = async () => {
+      disabled();
+      // .catch 失败，具体业务error写(拦截)在这里
       const response = await http
         .post('/validation_codes', {email: formData.email})
-        .catch(onError); // 失败，具体业务error写(拦截)在这里
+        .catch(onError)
+        .finally(enabled);
       // 成功,refValidationCode.value传给startCount，从而触发倒计时
       refValidationCode.value.startCount();
       console.log(response);
@@ -66,6 +70,7 @@ export const SignInPage = defineComponent({
                   // test countFrom 1s可以发送一次验证码
                           countFrom={1}
                           onClick={onClickSendValidationCode}
+                          disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>
                 <FormItem style={{paddingTop: '96px'}}>
                   <Button>登录</Button>
