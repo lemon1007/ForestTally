@@ -7,7 +7,7 @@ import s from '../stylesheets/SignInPage.module.scss';
 import {Button} from '../shared/Button';
 import {http} from '../shared/Http';
 import {useBool} from '../hooks/useBool';
-import {useRouter} from 'vue-router';
+import {useRoute, useRouter} from 'vue-router';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -19,9 +19,10 @@ export const SignInPage = defineComponent({
       email: [],
       code: []
     });
-    const router = useRouter();
     const refValidationCode = ref<any>();
     const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
+    const router = useRouter();
+    const route = useRoute();
 
     // 登录提交信息
     const onSubmit = async (e: Event) => {
@@ -38,7 +39,12 @@ export const SignInPage = defineComponent({
         const response = await http.post<{ jwt: string }>('/session', formData)
           .catch(onError);
         localStorage.setItem('jwt', response.data.jwt);
-        router.push('/');
+        // 通过 localStorage 保存获取登录前的页面
+        // const returnTo = localStorage.getItem('returnTo');
+        // 通过 query 查询参数保存获取登录前的页面
+        // router.push('/sign_in?return_to=' + encodeURIComponent(route.fullPath));
+        const returnTo = route.query.return_to?.toString();
+        router.push(returnTo || '/');
       }
     };
     // post请求错误处理
