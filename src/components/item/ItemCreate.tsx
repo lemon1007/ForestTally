@@ -6,7 +6,6 @@ import {Tabs, Tab} from '../../shared/Tabs';
 import {InputPad} from './InputPad';
 import {http} from '../../shared/Http';
 import {Resources, Tag} from '../../env';
-import {Button} from '../../shared/Button';
 import {useTags} from '../../shared/useTags';
 import {Tags} from './Tags';
 
@@ -18,18 +17,7 @@ export const ItemCreate = defineComponent({
     }
   },
   setup: (props, context) => {
-    // 支出tag列表
     const refKind = ref('支出');
-
-
-    // 收入tag列表
-    const {tags: incomeTags, hasMore: hasMore2, fetchTags: fetchTags2} = useTags((page) => {
-      return http.get<Resources<Tag>>('/tags', {
-        kind: 'income',
-        page: page + 1,
-        _mock: 'tagIndex',
-      });
-    });
     return () => (
       <MainLayout>{
         {
