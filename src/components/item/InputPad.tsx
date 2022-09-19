@@ -6,20 +6,17 @@ import {Time} from '../../shared/time';
 
 export const InputPad = defineComponent({
   props: {
-    name: {
-      type: String as PropType<string>
-    }
+    happenAt: String,
+    amount: Number,
   },
   setup: (props, context) => {
-    const now = new Date()
-    const refDate = ref<Date>(now);
     const appendText = (n: number | string) => {
       const nString = n.toString();
-      const dotIndex = refAmount.value.indexOf('.');
-      if (refAmount.value.length >= 13) {
+      const dotIndex = refAmount.value.toString().indexOf('.');
+      if (refAmount.value.toString().length >= 13) {
         return;
       }
-      if (dotIndex >= 0 && refAmount.value.length - dotIndex > 2) {
+      if (dotIndex >= 0 && refAmount.value.toString().length - dotIndex > 2) {
         return;
       }
       if (nString === '.') {
@@ -56,17 +53,16 @@ export const InputPad = defineComponent({
       {text: '.', onClick: () => {appendText('.');}},
       {
         text: '回删', onClick: () => {
-          if (refAmount.value.length === 1) {
+          if (refAmount.value.toString().length === 1) {
             refAmount.value = '0';
           } else {
-            refAmount.value = refAmount.value.slice(0, -1);
+            refAmount.value = refAmount.value.toString().slice(0, -1);
           }
         }
       },
       {
         text: '提交', onClick: () => {
-          refAmount.value = '0';
-          refNotes.notes = '';
+          context.emit('update:amount', refAmount.value);
         }
       },
     ];
@@ -74,34 +70,25 @@ export const InputPad = defineComponent({
     const showDatePicker = () => refDatePickerVisible.value = true;
     const hideDatePicker = () => refDatePickerVisible.value = false;
     const setDate = (date: Date) => {
-      refDate.value = date;
+      context.emit('update:happenAt', date.toISOString());
       hideDatePicker();
     };
-    const refAmount = ref('0');
-    // v-model绑定input输入框的值
-    const refNotes = reactive({notes: ''});
-
+    const refAmount = ref(props.amount || '0');
     return () => (
       <div class={s.inputPad_wrapper}>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
             <Icon name="test" class={s.date_icon}></Icon>
             <span class={s.date}>
-              <span onClick={showDatePicker}>{new Time(refDate.value).format()}</span>
+              <span onClick={showDatePicker}>{new Time(props.happenAt).format()}</span>
               <Popup position="bottom" v-model:show={refDatePickerVisible.value}>
-                <DatetimePicker value={refDate.value} type="date" title="请选择时间" onConfirm={setDate}
+                <DatetimePicker value={props.happenAt} type="date" title="请选择时间" onConfirm={setDate}
                                 onCancel={hideDatePicker}/>
               </Popup>
           </span>
           </span>
           <span class={s.amount}>{refAmount.value}</span>
         </div>
-
-        <div class={s.notes}>
-          <Icon name="test" class={s.notes_icon}></Icon>
-          <input placeholder="添加备注" v-model={refNotes.notes}></input>
-        </div>
-
         <div class={s.buttons}>
           {buttons.map(button =>
             <button onClick={button.onClick}>{button.text}</button>)

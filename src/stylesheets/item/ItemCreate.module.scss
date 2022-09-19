@@ -17,7 +17,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 88px);
+  height: 55vh;
 }
 
 // 这个是整个大的 Tabs
@@ -26,9 +26,9 @@
   flex-shrink: 1;
   overflow: scroll;
 
-  //&::-webkit-scrollbar {
-  //  display: none;
-  //}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .inputPad_wrapper {

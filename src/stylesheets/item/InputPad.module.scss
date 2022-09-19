@@ -36,32 +36,6 @@
     }
   }
 
-  .notes {
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    border-top: var(--input-pad-button-border);
-    background: white;
-
-    > input {
-      width: 80%;
-      border: none;
-      font-size: 13px;
-      padding-left: 8px;
-      padding-top: 1px;
-
-      &:focus {
-        outline: none;
-      }
-    }
-
-    &_icon {
-      width: 23px;
-      height: 23px;
-    }
-  }
-
-
   .buttons {
     display: flex;
     flex-wrap: wrap;
