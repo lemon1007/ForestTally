@@ -41,5 +41,4 @@ export const mockTagIndex: Mock = (config) => {
   } else {
     return [200, createBody(1)];
   }
-
 };
