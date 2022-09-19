@@ -1,4 +1,4 @@
-import {defineComponent, PropType, reactive, ref} from 'vue';
+import {defineComponent, reactive, ref} from 'vue';
 import {Form, FormItem} from '../shared/Form';
 import {MainLayout} from '../layouts/MainLayout';
 import {hasError, validate} from '../shared/validate';
@@ -7,6 +7,7 @@ import s from '../stylesheets/SignInPage.module.scss';
 import {Button} from '../shared/Button';
 import {http} from '../shared/Http';
 import {useBool} from '../hooks/useBool';
+import {useRouter} from 'vue-router';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -18,6 +19,7 @@ export const SignInPage = defineComponent({
       email: [],
       code: []
     });
+    const router = useRouter();
     const refValidationCode = ref<any>();
     const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
 
@@ -33,16 +35,21 @@ export const SignInPage = defineComponent({
         {key: 'code', type: 'required', message: '必填'},
       ]));
       if (!hasError(errors)) {
-        const response = await http.post('/session', formData);
+        const response = await http.post<{ jwt: string }>('/session', formData)
+          .catch(onError);
+        localStorage.setItem('jwt', response.data.jwt);
+        router.push('/');
       }
     };
-    // 错误数据处理，422 => 邮箱格式不正确
+    // post请求错误处理
+    // 验证码和登录错误数据处理，422 => 邮箱格式不正确
     const onError = (error: any) => {
       if (error.response && error.response.status === 422) {
         Object.assign(errors, error.response.data.errors);
       }
       throw error;
     };
+
     // 验证码获取
     const onClickSendValidationCode = async () => {
       disabled();
