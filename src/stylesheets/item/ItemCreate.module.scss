@@ -19,6 +19,20 @@
   height: 47vh;
 }
 
+.loadMore_wrapper {
+  padding-bottom: 16px;
+  text-align: center;
+  width: 100%;
+
+  .loadMore {
+
+  }
+
+  .noMore {
+
+  }
+}
+
 .tabs {
   flex-grow: 1;
   flex-shrink: 1;
