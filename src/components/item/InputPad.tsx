@@ -62,7 +62,7 @@ export const InputPad = defineComponent({
       },
       {
         text: '提交', onClick: () => {
-          context.emit('update:amount', refAmount.value);
+          context.emit('update:amount', parseFloat(refAmount.value));
         }
       },
     ];
@@ -73,7 +73,7 @@ export const InputPad = defineComponent({
       context.emit('update:happenAt', date.toISOString());
       hideDatePicker();
     };
-    const refAmount = ref(props.amount || '0');
+    const refAmount = ref(props.amount ? props.amount.toString() : '0');
     return () => (
       <div class={s.inputPad_wrapper}>
         <div class={s.showInfo}>
