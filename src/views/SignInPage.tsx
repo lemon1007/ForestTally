@@ -37,8 +37,11 @@ export const SignInPage = defineComponent({
         {key: 'code', type: 'required', message: '必填'},
       ]));
       if (!hasError(errors)) {
-        const response = await http.post<{ jwt: string }>('/session', formData)
-          .catch(onError);
+        const response = await http.post<{ jwt: string }>('/session', formData, {
+          // _mock测试使用的虚假数据
+          params: {_mock: 'session'}
+        }).catch(onError);
+        console.log(response);
         localStorage.setItem('jwt', response.data.jwt);
         // 通过 localStorage 保存获取登录前的页面
         // const returnTo = localStorage.getItem('returnTo');
