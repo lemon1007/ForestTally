@@ -13,12 +13,14 @@
 
 // TODO
 // 切换手机型号之后高度不适配
+// 这里是 itemCreate 中最外层的 wrapper
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 47vh;
+  height: calc(100vh - 88px);
 }
 
+// 这个是整个大的 Tabs
 .tabs {
   flex-grow: 1;
   flex-shrink: 1;
