@@ -1,9 +1,11 @@
-import {defineComponent, PropType, ref} from 'vue';
+import {defineComponent, onMounted, PropType, ref} from 'vue';
 import s from '../../stylesheets/item/ItemCreate.module.scss';
 import {Icon} from '../../shared/Icon';
 import {MainLayout} from '../../layouts/MainLayout';
 import {Tabs, Tab} from '../../shared/Tabs';
 import {InputPad} from './InputPad';
+import {http} from '../../shared/Http';
+import {Tag} from '../../env';
 
 
 export const ItemCreate = defineComponent({
@@ -14,15 +16,14 @@ export const ItemCreate = defineComponent({
   },
   setup: (props, context) => {
     const refKind = ref('支出');
-    const refExpensesTags = ref([
-      {id: 1, name: '餐费', sign: '￥', category: 'expenses'},
-      {id: 2, name: '打车', sign: '￥', category: 'expenses'},
-      {id: 3, name: '聚餐', sign: '￥', category: 'expenses'},
-      {id: 4, name: '打车', sign: '￥', category: 'expenses'},
-      {id: 5, name: '聚餐', sign: '￥', category: 'expenses'},
-      {id: 6, name: '打车', sign: '￥', category: 'expenses'},
-      {id: 7, name: '聚餐', sign: '￥', category: 'expenses'},
-    ]);
+    onMounted(async () => {
+      const response = await http.get<{ resources: Tag[] }>('/tags', {
+        kind: 'expenses',
+        _mock: 'tagIndexExpenses'
+      });
+      refExpensesTags.value = response.data.resources;
+    });
+    const refExpensesTags = ref<Tag[]>([]);
     const refIncomeTags = ref([
       {id: 4, name: '工资', sign: '￥', category: 'income'},
       {id: 5, name: '彩票', sign: '￥', category: 'income'},

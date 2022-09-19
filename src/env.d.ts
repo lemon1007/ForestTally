@@ -10,3 +10,10 @@ declare module '*.vue' {
 }
 type JSONValue = string | number | null | boolean | JSONValue[] | { [key: string]: JSONValue };
 type Mock = (config: AxiosRequestConfig) => [number, any]
+type Tag = {
+  id: number,
+  user_id: number,
+  name: string,
+  sign: string,
+  kind: 'expenses' | 'income'
+}
