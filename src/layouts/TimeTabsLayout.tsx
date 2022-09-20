@@ -11,11 +11,11 @@ const demo = defineComponent({
   props: {
     startDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     },
     endDate: {
       type: String as PropType<string>,
-      required: true
+      required: false
     }
   }
 });
@@ -30,10 +30,11 @@ export const TimeTabsLayout = defineComponent({
   setup: (props, context) => {
     const refSelected = ref('本月');
     const time = new Time();
-    const customTime = reactive({
+    const tempTime = reactive({
       start: new Time().format(),
       end: new Time().format()
     });
+    const customTime = reactive<{ start?: string, end?: string }>({});
     const timeList = [
       {start: time.firstDayOfMonth(), end: time.lastDayOfMonth()},
       {start: time.add(-1, 'month').firstDayOfMonth(), end: time.add(-1, 'month').lastDayOfMonth()},
@@ -43,6 +44,7 @@ export const TimeTabsLayout = defineComponent({
     const onSubmitCustomTime = (e: Event) => {
       e.preventDefault();
       refOverlayVisible.value = false;
+      Object.assign(customTime, tempTime);
     };
     const onSelect = (value: string) => {
       if (value === '自定义时间') {
@@ -78,8 +80,8 @@ export const TimeTabsLayout = defineComponent({
                 </header>
                 <main>
                   <Form onSubmit={onSubmitCustomTime}>
-                    <FormItem label="开始时间" v-model={customTime.start} type="date"/>
-                    <FormItem label="结束时间" v-model={customTime.end} type="date"/>
+                    <FormItem label="开始时间" v-model={tempTime.start} type="date"/>
+                    <FormItem label="结束时间" v-model={tempTime.end} type="date"/>
                     <FormItem>
                       <div class={s.actions}>
                         <button type="button" onClick={() => refOverlayVisible.value = false}>取消</button>
