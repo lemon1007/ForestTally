@@ -1,11 +1,11 @@
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType, ref} from 'vue';
 import s from '../../stylesheets/item/Tags.module.scss';
 import {Icon} from '../../shared/Icon';
 import {Button} from '../../shared/Button';
 import {useTags} from '../../shared/useTags';
 import {http} from '../../shared/Http';
 import {Resources, Tag} from '../../env';
-import {RouterLink} from 'vue-router';
+import {RouterLink, useRouter} from 'vue-router';
 
 export const Tags = defineComponent({
   props: {
@@ -27,8 +27,31 @@ export const Tags = defineComponent({
         _mock: 'tagIndex',
       });
     });
+
+    const timer = ref<number>();
+    const currentTag = ref<HTMLDivElement>();
+    const router = useRouter();
+    const onLongPress = (tagId: Tag['id']) => {
+      router.push(`/tags/${tagId}/edit?kind=${props.kind}&return_to=${router.currentRoute.value.fullPath}`);
+    };
+    const onTouchStart = (e: TouchEvent, tag: Tag) => {
+      currentTag.value = e.currentTarget as HTMLDivElement;
+      // @ts-ignore
+      timer.value = setTimeout(() => {
+        onLongPress(tag.id);
+      }, 500);
+    };
+    const onTouchEnd = (e: TouchEvent) => {
+      clearTimeout(timer.value);
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const pointedElement = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+      if (currentTag.value?.contains(pointedElement) === false && currentTag.value !== pointedElement) {
+        clearTimeout(timer.value);
+      }
+    };
     return () => <>
-      <div class={s.tags_wrapper}>
+      <div class={s.tags_wrapper} onTouchmove={onTouchMove}>
         <div class={s.tagList_wrapper}>
           <RouterLink to={`/tags/create?kind=${props.kind}`} class={s.tag}>
             <div class={s.sign}>
@@ -40,7 +63,9 @@ export const Tags = defineComponent({
           </RouterLink>
           {expensesTags.value.map(tag =>
             <div class={[s.tag, props.selected === tag.id ? s.selected : '']}
-                 onClick={() => onSelect(tag)}>
+                 onClick={() => onSelect(tag)}
+                 onTouchstart={(e) => onTouchStart(e, tag)}
+                 onTouchend={onTouchEnd}>
               <div class={s.sign}>
                 {tag.sign}
               </div>
