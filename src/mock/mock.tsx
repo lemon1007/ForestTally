@@ -4,7 +4,11 @@ import {Mock} from '../env';
 
 faker.setLocale('zh_CN');
 
-export {mockSession} from './mockSession';
+export const mockSession: Mock = (config) => {
+  return [200, {
+    jwt: faker.random.word()
+  }];
+};
 
 export const mockTagEdit: Mock = config => {
   const createTag = (attrs?: any) =>

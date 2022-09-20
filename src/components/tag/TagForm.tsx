@@ -18,11 +18,11 @@ export const TagForm = defineComponent({
     if (!route.query.kind) {
       return () => <div>参数错误</div>;
     }
-    const formData = reactive({
-      kind: route.query.kind!.toString(),
+    const formData = reactive<Partial<Tag>>({
       id: undefined,
       name: '',
       sign: '',
+      kind: route.query.kind!.toString(),
     });
     // 校验规则
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
