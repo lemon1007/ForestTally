@@ -67,7 +67,6 @@ export const mockTagEdit: Mock = config => {
     });
   return [200, {resource: createTag()}];
 };
-
 export const mockTagShow: Mock = config => {
   const createTag = (attrs?: any) =>
     ({
@@ -79,7 +78,6 @@ export const mockTagShow: Mock = config => {
     });
   return [200, {resource: createTag()}];
 };
-
 export const mockItemCreate: Mock = config => {
   return [200, {
     resource: {
