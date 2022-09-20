@@ -1,9 +1,9 @@
 /// <reference types="vite/client" />
 
-import {AxiosRequestConfig} from 'axios';
+import { AxiosRequestConfig } from 'axios';
 
 declare module '*.vue' {
-  import type {DefineComponent} from 'vue';
+  import type { DefineComponent } from 'vue';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/ban-types
   const component: DefineComponent<{}, {}, any>;
   export default component;
@@ -36,6 +36,11 @@ type Item = {
   happen_at: string;
   kind: expenses | income;
 };
+
+type User = {
+  id: number;
+  email: string;
+}
 
 type Resources<T = any> = {
   resources: T[];

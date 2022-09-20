@@ -1,6 +1,10 @@
-import {defineComponent, PropType, ref} from 'vue';
+import { defineComponent, onMounted, PropType, ref } from 'vue';
 import s from '../stylesheets/sharedStyle/Overlay.module.scss';
-import {Icon} from './Icon';
+import { Icon } from './Icon';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+import { User } from '../env';
+import { mePromise } from './me';
+import { Dialog } from 'vant';
 
 export const Overlay = defineComponent({
   props: {
@@ -12,12 +16,34 @@ export const Overlay = defineComponent({
     const close = () => {
       props.onClose?.();
     };
+    const me = ref<User>()
+    onMounted(async () => {
+      const response = await mePromise
+      me.value = response?.data.resource
+    })
+    const onSignOut = async () => {
+      await Dialog.confirm({
+        title: '确认',
+        message: '你真的要退出登录吗？',
+      })
+      localStorage.removeItem('jwt')
+      router.push('/sign_in')
+    }
+    const route = useRoute()
+    const router = useRouter()
     return () => <>
       <div class={s.mask} onClick={close}></div>
       <div class={s.overlay}>
         <section class={s.overlay_header}>
-          <h2>未登录用户</h2>
-          <p>点击登录</p>
+          {me.value ?
+            <div>
+              <h2 class={s.email}>{me.value.email.slice(0, me.value.email.indexOf('@'))}</h2>
+              <p onClick={onSignOut}>点击注销</p>
+            </div> :
+            <RouterLink to={`/sign_in?return_to=${route.fullPath}`}>
+              <h2>未登录用户</h2>
+              <p>点击登录</p>
+            </RouterLink>}
         </section>
         <nav class={s.overlay_main}>
           <ul>
@@ -51,10 +77,10 @@ export const OverlayIcon = defineComponent({
       refOverlayVisible.value = !refOverlayVisible.value;
     };
     return () => <>
-      <Icon name="menu" class={s.navIcon} onClick={onClickMenu}/>
+      <Icon name="menu" class={s.navIcon} onClick={onClickMenu} />
       {
         refOverlayVisible.value &&
-        <Overlay onClose={() => refOverlayVisible.value = false}/>
+        <Overlay onClose={() => refOverlayVisible.value = false} />
       }
     </>;
   }

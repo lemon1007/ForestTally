@@ -13,6 +13,12 @@
   height: 30px;
 }
 
+.email {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .overlay {
   position: fixed;
   z-index: calc(var(--z-index-overlay) + 1);
@@ -33,17 +39,17 @@
   &_main {
     padding: 13px;
 
-    > ul {
+    >ul {
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      > li {
+      >li {
         line-height: 40px;
         display: flex;
         align-items: center;
 
-        > span {
+        >span {
           margin-left: 10px;
         }
       }
