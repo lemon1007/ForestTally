@@ -9,6 +9,7 @@ import {http} from '../shared/Http';
 import {useBool} from '../hooks/useBool';
 import {useRoute, useRouter} from 'vue-router';
 import {refreshMe} from '../shared/me';
+import {count} from 'echarts/types/src/component/dataZoom/history';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -63,8 +64,8 @@ export const SignInPage = defineComponent({
     const onClickSendValidationCode = async () => {
       disabled();
       // .catch 失败，具体业务error写(拦截)在这里
-      const response = await http
-        .post('/validation_codes', {email: formData.email})
+      await http
+        .post('/validation_codes', {email: formData.email}, {_autoLoading: true})
         .catch(onError)
         .finally(enabled);
       // 成功,refValidationCode.value传给startCount，从而触发倒计时
@@ -89,7 +90,7 @@ export const SignInPage = defineComponent({
                           label="验证码" type="validationCode"
                           placeholder="请输入六位数字"
                   // test countFrom 1s可以发送一次验证码
-                          countFrom={60}
+                          countFrom={5}
                           onClick={onClickSendValidationCode}
                           disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>

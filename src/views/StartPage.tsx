@@ -1,4 +1,4 @@
-import {defineComponent, ref} from 'vue';
+import {defineComponent} from 'vue';
 import {RouterLink} from 'vue-router';
 import {Button} from '../shared/Button';
 import {FloatButton} from '../shared/FloatButton';
@@ -10,10 +10,6 @@ import {MainLayout} from '../layouts/MainLayout';
 
 export const StartPage = defineComponent({
   setup: (props, context) => {
-    const refOverlayVisible = ref(false);
-    const onClickMenu = () => {
-      refOverlayVisible.value = !refOverlayVisible.value;
-    };
     return () => (
       <MainLayout>{
         {
