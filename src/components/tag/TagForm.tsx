@@ -5,7 +5,7 @@ import {hasError, Rules, validate} from '../../shared/validate';
 import {Form, FormItem} from '../../shared/Form';
 import {useRoute, useRouter} from 'vue-router';
 import {http} from '../../shared/Http';
-import {Resource, Tag} from '../../env';
+import {FormErrors, Resource, Tag} from '../../env';
 import {onFormError} from '../../shared/onFormError';
 
 export const TagForm = defineComponent({
@@ -22,10 +22,10 @@ export const TagForm = defineComponent({
       id: undefined,
       name: '',
       sign: '',
-      kind: route.query.kind!.toString(),
+      kind: route.query.kind!.toString() as ('expenses' | 'income'),
     });
     // 校验规则
-    const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({});
+    const errors = reactive<FormErrors<typeof formData>>({});
     const onSubmit = async (e: Event) => {
       e.preventDefault();
       const rules: Rules<typeof formData> = [

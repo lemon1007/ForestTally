@@ -26,5 +26,5 @@ const addZero = (n: number) => {
 };
 
 export const getMoney = (n: number) => {
-  return addZero(n / 100);
+  return addZero(n);
 };

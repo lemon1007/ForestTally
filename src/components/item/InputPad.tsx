@@ -68,7 +68,6 @@ export const InputPad = defineComponent({
           // context.emit('update:amount', parseFloat(refAmount.value) / 100);
           context.emit('update:amount', parseFloat(refAmount.value));
           props.onSubmit?.();
-          refAmount.value = '0';
         }
       },
     ];
