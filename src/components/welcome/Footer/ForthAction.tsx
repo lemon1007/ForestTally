@@ -12,7 +12,7 @@ export const ForthAction: FunctionalComponent = () => {
     <div class={s.action}>
       <SkipFeatures class={s.fake}></SkipFeatures>
       <span onClick={onClick}>
-        <RouterLink class={s.next} to="/start">开启记账</RouterLink>
+        <RouterLink class={s.next} to="/items">开启记账</RouterLink>
       </span>
       <SkipFeatures class={s.fake}></SkipFeatures>
     </div>

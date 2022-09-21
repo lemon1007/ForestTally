@@ -5,7 +5,6 @@ import {Third} from '../components/welcome/Main/Third';
 import {Forth} from '../components/welcome/Main/Forth';
 import {FirstAction} from '../components/welcome/Footer/FirstAction';
 import {Welcome} from '../views/Welcome';
-import {StartPage} from '../views/StartPage';
 import {SecondAction} from '../components/welcome/Footer/SecondAction';
 import {ThirdAction} from '../components/welcome/Footer/ThirdAction';
 import {ForthAction} from '../components/welcome/Footer/ForthAction';
@@ -36,7 +35,6 @@ export const routes: RouteRecordRaw[] = [
       {path: '4', name: 'welcome4', components: {main: Forth, footer: ForthAction}},
     ]
   },
-  {path: '/start', component: StartPage},
   {
     path: '/items', component: ItemPage,
     children: [
