@@ -16,7 +16,7 @@ const demo = defineComponent({
     endDate: {
       type: String as PropType<string>,
       required: false
-    }
+    },
   }
 });
 
@@ -25,7 +25,16 @@ export const TimeTabsLayout = defineComponent({
     component: {
       type: Object as PropType<typeof demo>,
       required: true
+    },
+    rerenderOnSwitchTab: {
+      type: Boolean,
+      default: false
+    },
+    hideThisYear: {
+      type: Boolean,
+      default: false
     }
+
   },
   setup: (props, context) => {
     const refSelected = ref('本月');
@@ -57,22 +66,44 @@ export const TimeTabsLayout = defineComponent({
           title: () => '森林记账',
           icon: () => <OverlayIcon/>,
           default: () => <>
-            <Tabs classPrefix={'itemList'}
-                  v-model:selected={refSelected.value}
-                  onUpdate:selected={onSelect}>
-              <Tab name="本月">
-                <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()}/>
-              </Tab>
-              <Tab name="上个月">
-                <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()}/>
-              </Tab>
-              <Tab name="今年">
-                <props.component startDate={timeList[2].start.format()} endDate={timeList[2].end.format()}/>
-              </Tab>
-              <Tab name="自定义时间">
-                <props.component startDate={customTime.start} endDate={customTime.end}/>
-              </Tab>
-            </Tabs>
+            {props.hideThisYear ? (
+              <Tabs
+                classPrefix="customTabs"
+                v-model:selected={refSelected.value}
+                onUpdate:selected={onSelect}
+                rerenderOnSelect={props.rerenderOnSwitchTab}
+              >
+                <Tab name="本月">
+                  <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()}/>
+                </Tab>
+                <Tab name="上月">
+                  <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()}/>
+                </Tab>
+                <Tab name="自定义时间">
+                  <props.component startDate={customTime.start} endDate={customTime.end}/>
+                </Tab>
+              </Tabs>
+            ) : (
+              <Tabs
+                classPrefix="customTabs"
+                v-model:selected={refSelected.value}
+                onUpdate:selected={onSelect}
+                rerenderOnSelect={props.rerenderOnSwitchTab}
+              >
+                <Tab name="本月">
+                  <props.component startDate={timeList[0].start.format()} endDate={timeList[0].end.format()}/>
+                </Tab>
+                <Tab name="上月">
+                  <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()}/>
+                </Tab>
+                <Tab name="今年">
+                  <props.component startDate={timeList[2].start.format()} endDate={timeList[2].end.format()}/>
+                </Tab>
+                <Tab name="自定义时间">
+                  <props.component startDate={customTime.start} endDate={customTime.end}/>
+                </Tab>
+              </Tabs>
+            )}
             <Overlay show={refOverlayVisible.value} class={s.overlay}>
               <div class={s.overlay_inner}>
                 <header>
