@@ -26,8 +26,8 @@ export const TagEdit = defineComponent({
         message: '你确定要删除吗？'
       });
       await http.delete(`/tags/${numberId}`, {
-        withItems: options?.withItems ? 'true' : 'false'
-      }).catch(onError);
+        withItems: options?.withItems ? 'true' : 'false',
+      }, {_autoLoading: true}).catch(onError);
       router.back();
     };
     return () => (
