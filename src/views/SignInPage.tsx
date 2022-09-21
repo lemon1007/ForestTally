@@ -89,7 +89,7 @@ export const SignInPage = defineComponent({
                           label="验证码" type="validationCode"
                           placeholder="请输入六位数字"
                   // test countFrom 1s可以发送一次验证码
-                          countFrom={1}
+                          countFrom={60}
                           onClick={onClickSendValidationCode}
                           disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>

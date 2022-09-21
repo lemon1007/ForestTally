@@ -39,20 +39,42 @@
   &_main {
     padding: 13px;
 
-    >ul {
+    > ul {
       display: flex;
       flex-direction: column;
       justify-content: center;
 
-      >li {
+      > li {
         line-height: 40px;
         display: flex;
         align-items: center;
 
-        >span {
+        > span {
           margin-left: 10px;
         }
       }
     }
   }
+}
+
+
+.action {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 6px 8px;
+  &_list {
+    padding-top: 16px;
+    font-size:15px;
+  }
+  > .icon {
+    margin-right: 12px;
+    margin-top: -5px;
+  }
+}
+.icon{
+  width: 26px;
+  height: 26px;
+  position: relative;
+  top: 2px;
 }

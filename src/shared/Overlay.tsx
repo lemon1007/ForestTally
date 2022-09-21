@@ -1,10 +1,10 @@
-import { defineComponent, onMounted, PropType, ref } from 'vue';
+import {defineComponent, onMounted, PropType, ref} from 'vue';
 import s from '../stylesheets/sharedStyle/Overlay.module.scss';
-import { Icon } from './Icon';
-import { RouterLink, useRoute, useRouter } from 'vue-router';
-import { User } from '../env';
-import { mePromise } from './me';
-import { Dialog } from 'vant';
+import {Icon} from './Icon';
+import {RouterLink, useRoute, useRouter} from 'vue-router';
+import {User} from '../env';
+import {mePromise} from './me';
+import {Dialog} from 'vant';
 
 export const Overlay = defineComponent({
   props: {
@@ -16,21 +16,21 @@ export const Overlay = defineComponent({
     const close = () => {
       props.onClose?.();
     };
-    const me = ref<User>()
+    const me = ref<User>();
     onMounted(async () => {
-      const response = await mePromise
-      me.value = response?.data.resource
-    })
+      const response = await mePromise;
+      me.value = response?.data.resource;
+    });
     const onSignOut = async () => {
       await Dialog.confirm({
         title: '确认',
         message: '你真的要退出登录吗？',
-      })
-      localStorage.removeItem('jwt')
-      router.push('/sign_in')
-    }
-    const route = useRoute()
-    const router = useRouter()
+      });
+      localStorage.removeItem('jwt');
+      router.push('/sign_in');
+    };
+    const route = useRoute();
+    const router = useRouter();
     return () => <>
       <div class={s.mask} onClick={close}></div>
       <div class={s.overlay}>
@@ -46,22 +46,24 @@ export const Overlay = defineComponent({
             </RouterLink>}
         </section>
         <nav class={s.overlay_main}>
-          <ul>
+          <ul class={s.action_list}>
             <li>
-              <Icon name="test"></Icon>
-              <span>统计图表</span>
+              <RouterLink to="/statistics" class={s.action}>
+                <Icon name="test" class={s.icon} />
+                <span>统计图表</span>
+              </RouterLink>
             </li>
             <li>
-              <Icon name="test"></Icon>
-              <span>导出数据</span>
+              <RouterLink to="/export" class={s.action}>
+                <Icon name="test" class={s.icon} />
+                <span>导出数据</span>
+              </RouterLink>
             </li>
             <li>
-              <Icon name="test"></Icon>
-              <span>自定义分类</span>
-            </li>
-            <li>
-              <Icon name="test"></Icon>
-              <span>记账提醒</span>
+              <RouterLink to="/notify" class={s.action}>
+                <Icon name="test" class={s.icon} />
+                <span>记账提醒</span>
+              </RouterLink>
             </li>
           </ul>
         </nav>
@@ -77,10 +79,10 @@ export const OverlayIcon = defineComponent({
       refOverlayVisible.value = !refOverlayVisible.value;
     };
     return () => <>
-      <Icon name="menu" class={s.navIcon} onClick={onClickMenu} />
+      <Icon name="menu" class={s.navIcon} onClick={onClickMenu}/>
       {
         refOverlayVisible.value &&
-        <Overlay onClose={() => refOverlayVisible.value = false} />
+        <Overlay onClose={() => refOverlayVisible.value = false}/>
       }
     </>;
   }
