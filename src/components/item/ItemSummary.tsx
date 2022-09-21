@@ -19,9 +19,8 @@ export const ItemSummary = defineComponent({
     endDate: {
       type: String as PropType<string>,
       required: false,
-    }
+    },
   },
-
   setup: (props, context) => {
     const items = ref<Item[]>([]);
     const hasMore = ref(false);
@@ -33,7 +32,8 @@ export const ItemSummary = defineComponent({
         happen_before: props.endDate,
         page: page.value + 1,
         _mock: 'itemIndex',
-      }, {_autoLoading: true});
+        _autoLoading: true,
+      });
       const {resources, pager} = response.data;
       items.value?.push(...resources);
       hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
@@ -58,7 +58,7 @@ export const ItemSummary = defineComponent({
         happen_before: props.endDate,
         page: page.value + 1,
         _mock: 'itemIndexBalance',
-      }, {_autoLoading: true});
+      });
       Object.assign(itemsBalance, response.data);
     };
     onMounted(fetchItemsBalance);
@@ -90,11 +90,11 @@ export const ItemSummary = defineComponent({
               {items.value.map((item) => (
                 <li>
                   <div class={s.sign}>
-                    <span>{item.tags![0].sign}</span>
+                    <span>{item.tags && item.tags.length > 0 ? item.tags[0].sign : '💰'}</span>
                   </div>
                   <div class={s.text}>
                     <div class={s.tagAndAmount}>
-                      <span class={s.tag}>{item.tags![0].name}</span>
+                      <span class={s.tag}>{item.tags && item.tags.length > 0 ? item.tags[0].name : '未分类'}</span>
                       <span class={s.amount}>￥<Money value={item.amount}/></span>
                     </div>
                     <div class={s.time}><Datetime value={item.happen_at}/></div>
@@ -111,8 +111,8 @@ export const ItemSummary = defineComponent({
           </>
         ) : (
           <>
-            <Center class={s.icon_wrapper}>
-              <Icon name="tree" class={s.icon}></Icon>
+            <Center class={s.pig_wrapper}>
+              <Icon name="pig" class={s.pig}/>
             </Center>
             <div class={s.button_wrapper}>
               <RouterLink to="/items/create">
@@ -126,5 +126,5 @@ export const ItemSummary = defineComponent({
         </RouterLink>
       </div>
     );
-  }
+  },
 });

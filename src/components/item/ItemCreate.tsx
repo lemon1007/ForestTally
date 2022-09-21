@@ -76,7 +76,7 @@ export const ItemCreate = defineComponent({
                 <Tags kind="expenses" v-model:selected={formData.tag_ids![0]}></Tags>
               </Tab>
               <Tab value="income" name="收入">
-                <Tags kind="收入" v-model:selected={formData.tag_ids![0]}></Tags>
+                <Tags kind="income" v-model:selected={formData.tag_ids![0]}></Tags>
               </Tab>
             </Tabs>
           </div>
