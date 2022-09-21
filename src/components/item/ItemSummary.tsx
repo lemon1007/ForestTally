@@ -33,7 +33,7 @@ export const ItemSummary = defineComponent({
         happen_before: props.endDate,
         page: page.value + 1,
         _mock: 'itemIndex',
-      });
+      }, {_autoLoading: true});
       const {resources, pager} = response.data;
       items.value?.push(...resources);
       hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
@@ -121,7 +121,9 @@ export const ItemSummary = defineComponent({
             </div>
           </>
         )}
-        <FloatButton IconName="add"/>
+        <RouterLink to="/items/create">
+          <FloatButton IconName="add"/>
+        </RouterLink>
       </div>
     );
   }
