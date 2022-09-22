@@ -47,7 +47,6 @@ export const TimeTabsLayout = defineComponent({
     const timeList = [
       {start: time.firstDayOfMonth(), end: time.lastDayOfMonth()},
       {start: time.add(-1, 'month').firstDayOfMonth(), end: time.add(-1, 'month').lastDayOfMonth()},
-      {start: time.firstDayOfYear(), end: time.lastDayOfYear()}
     ];
     const refOverlayVisible = ref(false);
     const onSubmitCustomTime = (e: Event) => {

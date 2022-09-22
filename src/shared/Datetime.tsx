@@ -14,8 +14,9 @@ export const Datetime = defineComponent({
   },
   setup: (props, context) => {
     const toDisplay = computed(() => new Time(props.value).format(props.format));
+    const showTimer = (toDisplay.value).slice(0, toDisplay.value.indexOf(' '));
     return () => (
-      <div>{toDisplay.value}</div>
+      <div>{showTimer}</div>
     );
   }
 });
