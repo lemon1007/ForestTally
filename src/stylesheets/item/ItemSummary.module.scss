@@ -82,6 +82,12 @@
 
 .tree_wrapper {
   padding: 120px 0;
+  font-size: 18px;
+
+  > p {
+    text-align: center;
+    padding-top: 20px;
+  }
 
   .tree {
     width: 128px;
