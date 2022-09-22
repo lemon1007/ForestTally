@@ -9,6 +9,8 @@ import {Button} from '../../shared/Button';
 import {Center} from '../../shared/Center';
 import {Icon} from '../../shared/Icon';
 import {RouterLink} from 'vue-router';
+import {useMeStore} from '../../stores/useMeStore';
+import {useAfterMe} from '../../hooks/useAfterMe';
 
 export const ItemSummary = defineComponent({
   props: {
@@ -22,6 +24,7 @@ export const ItemSummary = defineComponent({
     },
   },
   setup: (props, context) => {
+    const meStore = useMeStore();
     const items = ref<Item[]>([]);
     const hasMore = ref(false);
     const page = ref(0);
@@ -39,7 +42,7 @@ export const ItemSummary = defineComponent({
       hasMore.value = (pager.page - 1) * pager.per_page + resources.length < pager.count;
       page.value += 1;
     };
-    onMounted(fetchItems);
+    useAfterMe(fetchItems);
 
     watch(() => [props.startDate, props.endDate], () => {
       items.value = [];
@@ -61,7 +64,7 @@ export const ItemSummary = defineComponent({
       });
       Object.assign(itemsBalance, response.data);
     };
-    onMounted(fetchItemsBalance);
+    useAfterMe(fetchItemsBalance);
     watch(() => [props.startDate, props.endDate], () => {
       Object.assign(itemsBalance, {
         expenses: 0, income: 0, balance: 0
