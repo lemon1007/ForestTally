@@ -6,7 +6,7 @@ type GetConfig = Omit<AxiosRequestConfig, 'params' | 'url' | 'method'>
 type PostConfig = Omit<AxiosRequestConfig, 'url' | 'data' | 'method'>
 type PatchConfig = Omit<AxiosRequestConfig, 'url' | 'data'>
 type DeleteConfig = Omit<AxiosRequestConfig, 'params'>
-declare var DEBUG: boolean
+declare var DEBUG: boolean;
 
 export class Http {
   instance: AxiosInstance;
@@ -34,13 +34,7 @@ export class Http {
   }
 }
 
-function isDev() {
-  if (location.hostname !== 'localhost'
-    && location.hostname !== '127.0.0.1'
-    && location.hostname !== '192.168.31.244') { return false; }
-  return true;
-}
-
+// 可以用全局变量DEBUG来替代isDev
 export const http = new Http('/api/v1');
 // export const http = new Http(isDev ? '/api/v1' : 发布地址);
 
