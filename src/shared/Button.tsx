@@ -1,5 +1,5 @@
 import {computed, defineComponent, PropType, ref} from 'vue';
-import s from '../stylesheets/sharedStyle/button.module.scss';
+import s from '../stylesheets/sharedStyle/Button.module.scss';
 
 export const Button = defineComponent({
   props: {

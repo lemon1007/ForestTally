@@ -14,7 +14,7 @@ import {count} from 'echarts/types/src/component/dataZoom/history';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
     const formData = reactive({
-      email: 'lemon19961007@sina.com',
+      email: 'sariel107@sina.com',
       code: ''
     });
     const errors = reactive({
