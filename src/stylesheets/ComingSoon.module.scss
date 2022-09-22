@@ -1,12 +1,24 @@
-.text{
+.text {
   text-align: center;
   font-size: 32px;
 }
 
-.tree{
+.tree {
   width: 128px;
   height: 128px;
-  &_wrapper{
+
+  &_wrapper {
     padding: 120px 0;
+  }
+}
+
+.return_button_wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+
+  .return_button {
+    width: 120px;
   }
 }
