@@ -9,6 +9,8 @@ declare module '*.vue' {
   export default component;
 }
 
+declare var DEBUG: boolean
+
 type Mock = (config: AxiosRequestConfig) => [number, any]
 
 type JSONValue =
