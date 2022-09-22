@@ -8,11 +8,11 @@ import {Button} from '../shared/Button';
 import {http} from '../shared/Http';
 import {useBool} from '../hooks/useBool';
 import {useRoute, useRouter} from 'vue-router';
-import {refreshMe} from '../shared/me';
-import {count} from 'echarts/types/src/component/dataZoom/history';
+import {useMeStore} from '../stores/useMeStore';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
+    const meStore = useMeStore();
     const formData = reactive({
       email: 'sariel107@sina.com',
       code: ''
@@ -47,7 +47,7 @@ export const SignInPage = defineComponent({
         // 通过 query 查询参数保存获取登录前的页面
         // router.push('/sign_in?return_to=' + encodeURIComponent(route.fullPath));
         const returnTo = route.query.return_to?.toString();
-        refreshMe();
+        meStore.refreshMe();
         router.push(returnTo || '/');
       }
     };
