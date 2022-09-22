@@ -1,7 +1,6 @@
 import {defineComponent, onMounted, PropType, reactive, ref, watch} from 'vue';
 import {FloatButton} from '../../shared/FloatButton';
 import s from '../../stylesheets/item/ItemSummary.module.scss';
-import {Item, Resources} from '../../env';
 import {http} from '../../shared/Http';
 import {Money} from '../../shared/Money';
 import {Datetime} from '../../shared/Datetime';
@@ -9,7 +8,6 @@ import {Button} from '../../shared/Button';
 import {Center} from '../../shared/Center';
 import {Icon} from '../../shared/Icon';
 import {RouterLink} from 'vue-router';
-import {useMeStore} from '../../stores/useMeStore';
 import {useAfterMe} from '../../hooks/useAfterMe';
 import {useItemStore} from '../../stores/userItemStore';
 
@@ -114,8 +112,8 @@ export const ItemSummary = defineComponent({
           </>
         ) : (
           <>
-            <Center class={s.pig_wrapper}>
-              <Icon name="pig" class={s.pig}/>
+            <Center class={s.tree_wrapper}>
+              <Icon name="tree" class={s.tree}/>
             </Center>
             <div class={s.button_wrapper}>
               <RouterLink to="/items/create">
