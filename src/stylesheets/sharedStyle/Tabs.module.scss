@@ -9,11 +9,11 @@
     z-index: 1;
     top: 0;
     background-color: var(--navBar-bg);
+    height: 6vh;
 
     > li {
-      flex-grow: 1;
-      flex-shrink: 0;
-      padding: 12px 0;
+      width: 50%;
+      line-height: 6vh;
 
       &.selected {
         position: relative;

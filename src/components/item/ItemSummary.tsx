@@ -70,7 +70,7 @@ export const ItemSummary = defineComponent({
         (<div>请先选择时间范围</div>) :
         (<div class={s.wrapper}>
           {(itemStore.items && itemStore.items.length > 0) ? (
-            <>
+            <div class={s.total_wrapper}>
               <ul class={s.total}>
                 <li>
                   <span>收入</span>
@@ -114,7 +114,7 @@ export const ItemSummary = defineComponent({
                   <span>没有更多啦</span>
                 )}
               </div>
-            </>
+            </div>
           ) : (
             <>
               <Center direction="y" class={s.tree_wrapper}>

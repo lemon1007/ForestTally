@@ -17,7 +17,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  height: 55vh;
+  height: 50vh;
 }
 
 // 这个是整个大的 Tabs
@@ -25,6 +25,8 @@
   flex-grow: 1;
   flex-shrink: 1;
   overflow: scroll;
+  height: 56vh;
+  margin-bottom: -6vh;
 
   &::-webkit-scrollbar {
     display: none;

@@ -1,5 +1,7 @@
 .inputPad_wrapper {
+  height: 35vh;
   .showInfo {
+    height: 7vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -37,16 +39,17 @@
   }
 
   .buttons {
+    height: 28vh;
     display: flex;
     flex-wrap: wrap;
     border-top: var(--input-pad-button-border);
 
     > button {
+      height: 7vh;
       border: none;
       border-right: var(--input-pad-button-border);
       border-bottom: var(--input-pad-button-border);
       width: 25%;
-      height: 50px;
       background: white;
 
       &:nth-child(4n) {
@@ -64,8 +67,8 @@
         border-bottom: none;
         background: var(--overlay-header-bg);
         color: var(--overlay-bg);
-        margin-top: -100px;
-        height: 150px;
+        margin-top: -14vh;
+        height: 21vh;
       }
     }
   }
