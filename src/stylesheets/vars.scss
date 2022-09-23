@@ -35,9 +35,7 @@
   --tag-bg: #EFEFEF;
   --text: #333;
   --top-safe-area-height: 24px;
-  --total-bg: #252A43;
-  --total-expenses: #53A867;
-  --total-income: #FE7275;
+  --total-bg: var(--main);
   --total-text: white;
   --transition-duration: 0.5s;
   // TODO

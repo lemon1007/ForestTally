@@ -81,7 +81,7 @@ export const ItemSummary = defineComponent({
                   <Money value={itemsBalance.expenses}/>
                 </li>
                 <li>
-                  <span>净收入</span>
+                  <span>结余</span>
                   <Money value={itemsBalance.balance}/>
                 </li>
               </ul>
