@@ -9,11 +9,11 @@ const echartsOption = {
     show: true,
     trigger: 'axis',
     formatter: ([item]: any) => {
-      const [x, y] = item.data
-      return `${new Time(new Date(x)).format('YYYY年MM月DD日')} ￥${getMoney(y)}`
+      const [x, y] = item.data;
+      return `${new Time(new Date(x)).format('YYYY年MM月DD日')} ￥${getMoney(y)}`;
     },
   },
-  grid: [{ left: 16, top: 20, right: 16, bottom: 20 }],
+  grid: [{left: 16, top: 20, right: 16, bottom: 20}],
   xAxis: {
     type: 'time',
     boundaryGap: ['3%', '0%'],
@@ -31,13 +31,14 @@ const echartsOption = {
       show: true,
       lineStyle: {
         type: 'dashed',
+        color: '#42b983'
       },
     },
     axisLabel: {
       show: false,
     },
   },
-}
+};
 
 export const LineChart = defineComponent({
   props: {
@@ -47,15 +48,15 @@ export const LineChart = defineComponent({
     },
   },
   setup: (props, context) => {
-    const refDiv = ref<HTMLDivElement>()
-    let chart: echarts.ECharts | undefined = undefined
+    const refDiv = ref<HTMLDivElement>();
+    let chart: echarts.ECharts | undefined = undefined;
 
     onMounted(() => {
       if (refDiv.value === undefined) {
-        return
+        return;
       }
       // 基于准备好的dom，初始化echarts实例
-      chart = echarts.init(refDiv.value)
+      chart = echarts.init(refDiv.value);
       // 绘制图表
       chart.setOption({
         ...echartsOption,
@@ -63,10 +64,20 @@ export const LineChart = defineComponent({
           {
             data: props.data,
             type: 'line',
+            smooth: true,
+            symbol: 'none',
+            itemStyle: {
+              color: '#42b983'  // 圆点颜色时
+            },
           },
         ],
-      })
-    })
+        // tooltip: {
+        //   axisPointer: {
+        //     type: 'none'
+        //   },
+        // },
+      });
+    });
     watch(
       () => props.data,
       () => {
@@ -76,9 +87,9 @@ export const LineChart = defineComponent({
               data: props.data,
             },
           ],
-        })
+        });
       }
-    )
-    return () => <div ref={refDiv} class={s.wrapper}></div>
+    );
+    return () => <div ref={refDiv} class={s.wrapper}></div>;
   },
-})
+});

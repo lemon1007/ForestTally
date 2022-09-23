@@ -1,5 +1,5 @@
 .wrapper {
-  margin-bottom: 128px;
+  margin-bottom: 20px;
 }
 
 .topItem {
@@ -24,6 +24,7 @@
     margin-left: 8px;
     flex-grow: 1;
     flex-shrink: 1;
+    margin-top: -7px;
 
     .bar_text {
       color: var(--text-muted);
@@ -66,6 +67,48 @@
   &:nth-child(3) {
     .bar_inner {
       background: #91cc75;
+    }
+  }
+
+  &:nth-child(4) {
+    .bar_inner {
+      background: #FAEF8EFF;
+    }
+  }
+
+  &:nth-child(5) {
+    .bar_inner {
+      background: pink;
+    }
+  }
+
+  &:nth-child(6) {
+    .bar_inner {
+      background: plum;
+    }
+  }
+
+  &:nth-child(7) {
+    .bar_inner {
+      background: cornflowerblue;
+    }
+  }
+
+  &:nth-child(8) {
+    .bar_inner {
+      background: indianred;
+    }
+  }
+
+  &:nth-child(9) {
+    .bar_inner {
+      background: #5ccdaf;
+    }
+  }
+
+  &:nth-child(9) {
+    .bar_inner {
+      background: #be5ccd;
     }
   }
 }

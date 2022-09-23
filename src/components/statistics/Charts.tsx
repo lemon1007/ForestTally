@@ -35,13 +35,13 @@ export const Charts = defineComponent({
       if (!props.startDate || !props.endDate) {
         return [];
       }
-      const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime()
-      const n = diff / DAY + 1
-      return Array.from({ length: n }).map((_, i) => {
-        const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp()
-        const item = data1.value[0]
-        const amount = item && new Date(item.happen_at+'T00:00:00.000+0800').getTime() === time ? data1.value.shift()!.amount : 0
-        return [new Date(time).toISOString(), amount]
+      const diff = new Date(props.endDate).getTime() - new Date(props.startDate).getTime();
+      const n = diff / DAY + 1;
+      return Array.from({length: n}).map((_, i) => {
+        const time = new Time(props.startDate + 'T00:00:00.000+0800').add(i, 'day').getTimestamp();
+        const item = data1.value[0];
+        const amount = item && new Date(item.happen_at + 'T00:00:00.000+0800').getTime() === time ? data1.value.shift()!.amount : 0;
+        return [new Date(time).toISOString(), amount];
       });
     });
     const fetchData1 = async () => {
@@ -87,18 +87,28 @@ export const Charts = defineComponent({
 
     return () => (
       <div class={s.wrapper}>
-        <FormItem
-          label="类型"
-          type="select"
-          options={[
-            {value: 'expenses', text: '支出'},
-            {value: 'income', text: '收入'}
-          ]}
-          v-model={kind.value}
-        />
-        <LineChart data={betterData1.value}/>
-        <PieChart data={betterData2.value}/>
-        <Bars data={betterData3.value}/>
+        <div class={s.type}>
+          <FormItem
+            type="select"
+            options={[
+              {value: 'expenses', text: '支出'},
+              {value: 'income', text: '收入'}
+            ]}
+            v-model={kind.value}
+          />
+        </div>
+        <div class={s.line_wrapper}>
+          <span>收支趋势</span>
+          <LineChart data={betterData1.value}/>
+        </div>
+        <div class={s.pie_wrapper}>
+          <span>类型占比</span>
+          <PieChart data={betterData2.value}/>
+        </div>
+        <div class={s.bars_wrapper}>
+          <span>分类统计</span>
+          <Bars data={betterData3.value}/>
+        </div>
       </div>
     );
   }
