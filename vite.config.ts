@@ -32,6 +32,7 @@ export default defineConfig(({command}) => {
         }
       }
     },
+    base: '/ForestTally/dist/',
     plugins: [
       vue(),
       vueJsx({
