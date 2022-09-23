@@ -38,9 +38,6 @@
   --total-bg: var(--main);
   --total-text: white;
   --transition-duration: 0.5s;
-  // TODO
-  // --van-overlay-z-index: 64不生效，item/list页面开启自定义时间浮窗时
-  // 无法覆盖顶部 navbar
   --van-overlay-z-index: 64;
   --z-index-navbar: 32;
   --z-index-overlay: 16;
