@@ -4,7 +4,7 @@ import {Time} from '../shared/time';
 import {OverlayIcon} from '../shared/Overlay';
 import {MainLayout} from './MainLayout';
 import {Tab, Tabs} from '../shared/Tabs';
-import {Overlay} from 'vant';
+import {Dialog, Overlay} from 'vant';
 import s from '../stylesheets/layouts/TimeTableLayout.module.scss';
 
 const demo = defineComponent({
@@ -37,12 +37,14 @@ export const TimeTabsLayout = defineComponent({
 
   },
   setup: (props, context) => {
+    const MONTH = 24 * 3600 * 1000 * 31;
     const refSelected = ref('本月');
     const time = new Time();
     const tempTime = reactive({
       start: new Time().format(),
       end: new Time().format()
     });
+    // const ChangeTime = /(\d{4})\-(\d{2})\-(\d{2})/;
     const customTime = reactive<{ start?: string, end?: string }>({});
     const timeList = [
       {start: time.firstDayOfMonth(), end: time.lastDayOfMonth()},
@@ -53,7 +55,23 @@ export const TimeTabsLayout = defineComponent({
     const onSubmitCustomTime = (e: Event) => {
       e.preventDefault();
       refOverlayVisible.value = false;
-      Object.assign(customTime, tempTime);
+      const subTempTimeStart = new Time(tempTime.start + 'T00:00:00.000+0800');
+      const subTempTimeEnd = new Time(tempTime.end + 'T00:00:00.000+0800');
+      if (subTempTimeEnd.getTimestamp() - subTempTimeStart.getTimestamp() <= MONTH) {
+        if (subTempTimeEnd.getTimestamp() - subTempTimeStart.getTimestamp() < 0) {
+          Dialog.confirm({
+            title: '提示',
+            message: '结束时间早于开始时间啦',
+          });
+        } else {
+          Object.assign(customTime, tempTime);
+        }
+      } else {
+        Dialog.confirm({
+          title: '提示',
+          message: '最多只能查近31天的数据哦',
+        });
+      }
     };
     const onSelect = (value: string) => {
       if (value === '自定义') {
