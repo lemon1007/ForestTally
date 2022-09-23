@@ -25,15 +25,6 @@ export const SignInPage = defineComponent({
     const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
     const router = useRouter();
 
-    // post请求错误处理
-    // 验证码和登录错误数据处理，422 => 邮箱格式不正确
-    const onError = (error: any) => {
-      if (error.response && error.response.status === 422) {
-        Object.assign(errors, error.response.data.errors);
-      }
-      throw error;
-    };
-
     // 登录提交信息
     const onSubmit = async (e: Event) => {
       e.preventDefault();
@@ -57,6 +48,15 @@ export const SignInPage = defineComponent({
         meStore.refreshMe();
         router.push('/');
       }
+    };
+
+    // post请求错误处理
+    // 验证码和登录错误数据处理，422 => 邮箱格式不正确
+    const onError = (error: any) => {
+      if (error.response.status === 422) {
+        Object.assign(errors, error.response.data.errors);
+      }
+      throw error;
     };
 
     // 验证码获取
