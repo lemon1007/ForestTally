@@ -69,7 +69,7 @@ export const TimeTabsLayout = defineComponent({
       } else {
         Dialog.confirm({
           title: '提示',
-          message: '最多只能查近31天的数据哦',
+          message: '最多只能查31天的数据哦',
         });
       }
     };
