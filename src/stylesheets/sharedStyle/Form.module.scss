@@ -8,7 +8,16 @@
 
 .formLabel {
   display: block;
+  padding: 10px 0;
+  border: 1px sienna solid;
+
 }
+
+.formItem_value {
+
+}
+
+
 
 .formItem {
   min-height: var(--input-min-height);
@@ -50,9 +59,6 @@
     flex-grow: 1;
     margin-left: 16px;
     height: var(--button-login-height);
-  }
-
-  &_name {
   }
 
   &_value {

@@ -5,11 +5,11 @@
   font-size: 14px;
   height: 45vh;
   overflow: scroll;
-  margin-top: 10px;
 
   &::-webkit-scrollbar {
     display: none;
   }
+
   &.error {
     border-color: var(--error-color);
   }
@@ -44,7 +44,7 @@
     line-height: 32px;
     overflow: auto;
     padding: 1px 4px;
-    height:39vh;
+    height: 38vh;
 
     &::-webkit-scrollbar {
       display: none;

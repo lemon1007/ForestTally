@@ -62,7 +62,7 @@ export const TagForm = defineComponent({
       Object.assign(formData, response.data.resource);
     });
     return () => (
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} class={s.total_wrapper}>
         <FormItem label="标签名"
                   type="text"
                   v-model={formData.name}
