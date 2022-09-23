@@ -71,11 +71,6 @@ export const LineChart = defineComponent({
             },
           },
         ],
-        // tooltip: {
-        //   axisPointer: {
-        //     type: 'none'
-        //   },
-        // },
       });
     });
     watch(

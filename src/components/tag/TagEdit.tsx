@@ -1,6 +1,5 @@
 import {defineComponent} from 'vue';
 import {MainLayout} from '../../layouts/MainLayout';
-import {Icon} from '../../shared/Icon';
 import {TagForm} from './TagForm';
 import {Button} from '../../shared/Button';
 import s from '../../stylesheets/tag/Tag.module.scss';
@@ -38,7 +37,7 @@ export const TagEdit = defineComponent({
           title: () => '编辑标签',
           icon: () => <BackIcon/>,
           default: () => (
-            <>
+            <div class={s.tagEdit_wrapper}>
               <TagForm id={numberId}/>
               <div class={s.actions}>
                 <Button
@@ -48,7 +47,7 @@ export const TagEdit = defineComponent({
                   删除标签（标签下对应记账也会被删除）
                 </Button>
               </div>
-            </>
+            </div>
           ),
         }}
       </MainLayout>

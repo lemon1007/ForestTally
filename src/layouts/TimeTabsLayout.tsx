@@ -56,7 +56,7 @@ export const TimeTabsLayout = defineComponent({
       Object.assign(customTime, tempTime);
     };
     const onSelect = (value: string) => {
-      if (value === '自定义时间') {
+      if (value === '自定义') {
         refOverlayVisible.value = true;
       }
     };
@@ -79,7 +79,7 @@ export const TimeTabsLayout = defineComponent({
                 <Tab value="上月" name="上月">
                   <props.component startDate={timeList[1].start.format()} endDate={timeList[1].end.format()}/>
                 </Tab>
-                <Tab value="自定义时间" name="自定义时间">
+                <Tab value="自定义" name="自定义">
                   <props.component startDate={customTime.start} endDate={customTime.end}/>
                 </Tab>
               </Tabs>
@@ -99,7 +99,7 @@ export const TimeTabsLayout = defineComponent({
                 <Tab value="今年" name="今年">
                   <props.component startDate={timeList[2].start.format()} endDate={timeList[2].end.format()}/>
                 </Tab>
-                <Tab value="自定义时间" name="自定义时间">
+                <Tab value="自定义" name="自定义">
                   <props.component startDate={customTime.start} endDate={customTime.end}/>
                 </Tab>
               </Tabs>

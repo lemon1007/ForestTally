@@ -116,7 +116,7 @@ export const ItemSummary = defineComponent({
               </div>
             </div>
           ) : (
-            <>
+            <div class={s.noShow_wrapper}>
               <Center direction="y" class={s.tree_wrapper}>
                 <Icon name="tree" class={s.tree}/>
                 <p>目前没有相关数据</p>
@@ -126,7 +126,7 @@ export const ItemSummary = defineComponent({
                   <Button class={s.button}>开始记账</Button>
                 </RouterLink>
               </div>
-            </>
+            </div>
           )}
           <RouterLink to="/items/create">
             <FloatButton IconName="add"/>
