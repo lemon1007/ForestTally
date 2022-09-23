@@ -21,7 +21,7 @@ export const TagForm = defineComponent({
     const formData = reactive<Partial<Tag>>({
       id: undefined,
       name: '',
-      sign: '',
+      sign: '\u{1F600}',
       kind: route.query.kind!.toString() as ('expenses' | 'income'),
     });
     // 校验规则
