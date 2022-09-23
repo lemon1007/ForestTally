@@ -44,7 +44,6 @@ export const TimeTabsLayout = defineComponent({
       start: new Time().format(),
       end: new Time().format()
     });
-    // const ChangeTime = /(\d{4})\-(\d{2})\-(\d{2})/;
     const customTime = reactive<{ start?: string, end?: string }>({});
     const timeList = [
       {start: time.firstDayOfMonth(), end: time.lastDayOfMonth()},
