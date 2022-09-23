@@ -55,7 +55,7 @@ export const Charts = defineComponent({
       data1.value = response.data.groups;
     };
     onMounted(fetchData1);
-    watch(() => kind.value, fetchData1);
+    watch(() => [props.startDate, props.endDate, kind.value], fetchData1);
 
     // data2 获取折线图之外的数据 group_by=tag_id
     const data2 = ref<Data2>([]);
@@ -82,12 +82,8 @@ export const Charts = defineComponent({
       });
       data2.value = response.data.groups;
     };
-    // TODO
-    // 一旦onMounted就会获取数据，当选择好时间后，并没有重新fetchData2，watch监听也只监听了kind的变化，因此当选择好时间后，并没有重新fetch，故数据没有刷新
-    // 需要让watch也监听一下，当时间发生变化时，fetch一下
-
     onMounted(fetchData2);
-    watch(() => kind.value, fetchData2);
+    watch(() => [props.startDate, props.endDate, kind.value], fetchData2);
 
     return () => (
       <div class={s.wrapper}>
