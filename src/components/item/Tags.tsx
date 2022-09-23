@@ -78,7 +78,7 @@ export const Tags = defineComponent({
         <div class={s.loadMore_wrapper}>
           {hasMore.value ?
             <Button class={s.loadMore} onClick={fetchTags}>加载更多</Button> :
-            <span class={s.noMore}>加载到头了</span>}
+            <span class={s.noMore}>没有更多啦</span>}
         </div>
       </div>
     </>;
