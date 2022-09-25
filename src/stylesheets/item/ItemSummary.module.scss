@@ -72,8 +72,12 @@
         color: var(--list-tag-text);
       }
 
-      .amount {
-        color: var(--list-amount-text);
+      .expensesColor {
+        color: #42b983;
+      }
+
+      .incomeColor {
+        color: rgba(255, 60, 0, 0.78);
       }
     }
 

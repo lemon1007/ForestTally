@@ -76,13 +76,10 @@ const mock = (response: AxiosResponse) => {
   return false;
 };
 
-
-// location.hostname !== '121.196.236.94'替换成自己的IP也不可以
 function isDev() {
-  if (location.hostname !== 'localhost'
+  return !(location.hostname !== 'localhost'
     && location.hostname !== '127.0.0.1'
-    && location.hostname !== '121.196.236.94') { return false; }
-  return true;
+    && location.hostname !== '121.196.236.94');
 }
 
 export const http = new Http(isDev() ? 'api/v1' : 'http://121.196.236.94:3000/api/v1');

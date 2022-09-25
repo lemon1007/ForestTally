@@ -12,7 +12,6 @@ import {AxiosError} from 'axios';
 import {BackIcon} from '../../shared/BackIcon';
 import {hasError, validate} from '../../shared/validate';
 
-
 export const ItemCreate = defineComponent({
   props: {
     name: {
