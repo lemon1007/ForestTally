@@ -9,7 +9,7 @@ export const First: FunctionalComponent = () => {
           <use xlinkHref="#first"></use>
         </svg>
         <div class={s.fontStyle}>
-          <div>这是一段话<br/>这里还有一段话</div>
+          <div>聚木才能成林<br/>汇流方可成海</div>
         </div>
       </div>
     </div>

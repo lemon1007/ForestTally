@@ -9,6 +9,7 @@ import {http} from '../shared/Http';
 import {useBool} from '../hooks/useBool';
 import {useRoute, useRouter} from 'vue-router';
 import {useMeStore} from '../stores/useMeStore';
+import {BackIcon} from '../shared/BackIcon';
 
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -24,6 +25,7 @@ export const SignInPage = defineComponent({
     const refValidationCode = ref<any>();
     const {ref: refDisabled, toggle, on: disabled, off: enabled} = useBool(false);
     const router = useRouter();
+    const route = useRoute();
 
     // 登录提交信息
     const onSubmit = async (e: Event) => {
@@ -45,8 +47,9 @@ export const SignInPage = defineComponent({
         // const returnTo = localStorage.getItem('returnTo');
         // 通过 query 查询参数保存获取登录前的页面
         // router.push('/sign_in?return_to=' + encodeURIComponent(route.fullPath));
+        const returnTo = route.query.return_to?.toString();
         meStore.refreshMe();
-        router.push('/');
+        router.push(returnTo || '/');
       }
     };
 
@@ -73,7 +76,8 @@ export const SignInPage = defineComponent({
     return () => (
       <MainLayout>{
         {
-          title: () => <div style="margin-left:-35px">登录</div>,
+          icon: () => <BackIcon/>,
+          title: () => <div>登录</div>,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
@@ -88,7 +92,7 @@ export const SignInPage = defineComponent({
                           label="验证码" type="validationCode"
                           placeholder="请输入六位数字"
                   // test countFrom 1s可以发送一次验证码
-                          countFrom={5}
+                          countFrom={7}
                           onClick={onClickSendValidationCode}
                           disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>

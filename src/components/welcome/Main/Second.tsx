@@ -9,7 +9,7 @@ export const Second:FunctionalComponent = () => {
           <use xlinkHref="#second"></use>
         </svg>
         <div class={s.fontStyle}>
-          <div>这是二段话<br/>还会有第三段哦</div>
+          <div>每天记一笔<br/>养成生活好习惯</div>
         </div>
       </div>
     </div>

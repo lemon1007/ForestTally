@@ -50,25 +50,25 @@ export const Overlay = defineComponent({
           <ul class={s.action_list}>
             <li>
               <RouterLink to="/items" class={s.action}>
-                <Icon name="test" class={s.icon}/>
-                <span>主页</span>
+                <Icon name="index" class={s.icon}/>
+                <span>记账</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/statistics" class={s.action}>
-                <Icon name="test" class={s.icon}/>
+                <Icon name="charts" class={s.icon}/>
                 <span>统计图表</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/export" class={s.action}>
-                <Icon name="test" class={s.icon}/>
+                <Icon name="export" class={s.icon}/>
                 <span>导出数据</span>
               </RouterLink>
             </li>
             <li>
               <RouterLink to="/notify" class={s.action}>
-                <Icon name="test" class={s.icon}/>
+                <Icon name="time" class={s.icon}/>
                 <span>记账提醒</span>
               </RouterLink>
             </li>

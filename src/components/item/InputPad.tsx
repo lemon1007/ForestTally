@@ -84,7 +84,7 @@ export const InputPad = defineComponent({
       <div class={s.inputPad_wrapper}>
         <div class={s.showInfo}>
           <span class={s.createdAt}>
-            <Icon name="test" class={s.date_icon}></Icon>
+            <Icon name="clock" class={s.date_icon}></Icon>
             <span class={s.date}>
               <span onClick={showDatePicker}>{new Time(props.happenAt).format()}</span>
               <Popup position="bottom" v-model:show={refDatePickerVisible.value}>

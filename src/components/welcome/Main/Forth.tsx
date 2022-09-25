@@ -9,7 +9,7 @@ export const Forth: FunctionalComponent = () => {
           <use xlinkHref="#forth"></use>
         </svg>
         <div class={s.fontStyle}>
-          <div>这是四段话<br/>后面没有话了哦</div>
+          <div>点击开启<br/>踏上记账新旅途</div>
         </div>
       </div>
     </div>
