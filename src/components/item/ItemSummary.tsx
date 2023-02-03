@@ -39,6 +39,7 @@ export const ItemSummary = defineComponent({
       income: 0,
       balance: 0
     });
+
     const fetchItemsBalance = async () => {
       if (!props.startDate || !props.endDate) {
         return;
@@ -82,9 +83,13 @@ export const ItemSummary = defineComponent({
                 </li>
                 <li>
                   <span>结余</span>
-                  <Money value={itemsBalance.balance}/>
+                  <span>
+                    <span>{itemsBalance.balance > 0 ? '+' : ''}</span>
+                    <Money value={itemsBalance.balance}/>
+                  </span>
                 </li>
               </ul>
+              {/*记账信息详细列表*/}
               <ol class={s.list}>
                 {itemStore.items.map((item) => (
                   <li>
@@ -107,6 +112,7 @@ export const ItemSummary = defineComponent({
                   </li>
                 ))}
               </ol>
+
               <div class={s.more}>
                 {itemStore.hasMore ? (
                   <Button onClick={() => itemStore.fetchNextPage(props.startDate, props.endDate)}>加载更多</Button>

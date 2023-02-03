@@ -15,8 +15,8 @@ export const SignInPage = defineComponent({
   setup: (props, context) => {
     const meStore = useMeStore();
     const formData = reactive({
-      email: '',
-      code: ''
+      email: 'sariel107@sina.com',
+      code: '123456'
     });
     const errors = reactive({
       email: [],
@@ -85,14 +85,15 @@ export const SignInPage = defineComponent({
                 <h1 class={s.appName}>森林记账</h1>
               </div>
               <Form onSubmit={onSubmit}>
+                <span class={s.testEmail}>(测试账号，可一键登录)</span>
                 <FormItem label="邮箱地址" type="text"
                           placeholder="请输入邮箱，然后点击发送验证码"
                           v-model={formData.email} error={errors.email?.[0]}/>
                 <FormItem ref={refValidationCode}
                           label="验证码" type="validationCode"
                           placeholder="请输入六位数字"
-                  // test countFrom 1s可以发送一次验证码
-                          countFrom={7}
+                  // test countFrom 60s可以发送一次验证码
+                          countFrom={60}
                           onClick={onClickSendValidationCode}
                           disabled={refDisabled.value}
                           v-model={formData.code} error={errors.code?.[0]}/>
